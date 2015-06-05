@@ -18,7 +18,7 @@
 <link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.3"/>
 
 
-    <meta name="description" content="xifan' blog | python | java | ruby | javascript" />
+    <meta name="description" content="xifan' blog | vim | python | java | javascript" />
 
 
 
@@ -144,8 +144,8 @@
           
           
             
-              <a class="post-title-link" href="/2015/06/04/hello-world/">
-                Hello World
+              <a class="post-title-link" href="/2015/06/05/throw-ssh-software-to-be-cool/">
+                扔掉你的ssh工具吧
               </a>
             
           
@@ -154,7 +154,7 @@
 
       <div class="post-meta">
         <span class="post-time">
-          发表于 2015-06-04
+          发表于 2015-06-05
         </span>
 
         
@@ -163,8 +163,8 @@
           
             <span class="post-comments-count">
             &nbsp; | &nbsp;
-            <a href="/2015/06/04/hello-world/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/04/hello-world/"></span>
+            <a href="/2015/06/05/throw-ssh-software-to-be-cool/#comments" >
+              <span class="post-comments-count ds-thread-count" data-thread-key="2015/06/05/throw-ssh-software-to-be-cool/"></span>
             </a>
           </span>
           
@@ -179,15 +179,44 @@
 
       
         
-          <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+          <h4 id="故事背景">故事背景</h4><p><em>如果你存在下面的情况，我想你可以继续看下去！</em></p>
+<blockquote>
+<ul>
+<li>你还在使用各种各样的SSH工具，来连接服务器？</li>
+<li>系统重装/迁移环境/工具更换，需要各种备份/导入/导出？</li>
+<li>更换环境的时候，会不会为每个服务器的配置所烦恼？</li>
+<li>作为码农，使用这样的工具不够逼格！这样不够Cool!</li>
+</ul>
+</blockquote>
+<h4 id="系统要求">系统要求</h4><pre><code>OS <span class="keyword">X</span> / Linux, 本人使用的环境是OS <span class="keyword">X</span>。
+</code></pre><h4 id="配置服务器">配置服务器</h4><p>编辑SSH配置文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vi ~/.ssh/config</span><br></pre></td></tr></table></figure>
+<p>添加服务器信息，常用属性如下：</p>
+<ul>
+<li>Host 服务器的别名，便于SSH连接，可根据实际情况命名</li>
+<li>HostName 服务器的域名/IP地址</li>
+<li>Port 端口（可选），如果是默认端口可不填</li>
+<li>User SSH连接的用户</li>
+</ul>
+<p>下面举两个例子,每个例子为一个服务器的配置（间隔使用空行）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我的服务器</span></span><br><span class="line">Host mine</span><br><span class="line">HostName xifan.me</span><br><span class="line">Port <span class="number">12345</span></span><br><span class="line">User xifan</span><br><span class="line"></span><br><span class="line"><span class="comment">#公司测试服务器</span></span><br><span class="line">Host c.t</span><br><span class="line">HostName <span class="number">172.42</span>.<span class="number">23.177</span></span><br><span class="line">Port <span class="number">22222</span></span><br><span class="line">User root</span><br></pre></td></tr></table></figure>
+<h4 id="连接服务器">连接服务器</h4><p>打开你的Terminal，连接我的服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh mine</span><br></pre></td></tr></table></figure></p>
+<p>连接公司测试服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh c.t</span><br></pre></td></tr></table></figure></p>
+<p>根据提示输入服务器密码，即可登陆成功。<br>有没有觉得很Cool，只要合理命名服务器，你就可以很简单的连接服务器，根本无需第三方软件，带着你的配置文件到任何地方都可以直接使用！</p>
+<h4 id="免密码登陆">免密码登陆</h4><blockquote>
+<p>虽然上面很Cool，但我想说，其实可以更Cool！<br>每次都要手动输入密码，码农是不能接受的，是的，不够Cool！</p>
+</blockquote>
+<p>使用ssh-keygen生成密钥，一路回车，全部使用默认值，会生成一个公匙(~/.ssh/id_rsa.pub)和私匙(~/.ssh/id_rsa)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>使用ssh-copy-id把你的公匙复制到对应的服务器，这样就可以免密码登陆了。</p>
+<blockquote>
+<p>如果你用Linux，那么恭喜你，你应该可以直接用。<br>如果你用OS X，那您还需要安装<code>brew install ssh-copy-id</code>，但如果你连brew都还没安装，那请你参考 <a href="http://brew.sh/" title="Homwbrew" target="_blank" rel="external">brew.sh</a>，只能帮到你这里了。</p>
+</blockquote>
+<p>复制公匙到我的服务器，根据提示输入密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#参数p,代表端口(可选)</span></span><br><span class="line">$ ssh-copy-id -p <span class="number">12345</span> xifan.me</span><br></pre></td></tr></table></figure></p>
+<p>再此尝试登陆我的服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh xifan</span><br></pre></td></tr></table></figure></p>
+<p><strong>不用密码就是那么Cool！</strong><br><strong>带上你的配置文件和公匙私匙！</strong><br><strong>走到哪都可以很方便的免密码登陆服务器！</strong></p>
+<h4 id="番外篇">番外篇</h4><blockquote>
+<p>>&gt; ssh-copy-id 到底干了什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他就是把你的公匙内容追加到服务器的这个文件末尾 ~/.ssh/authorized_keys<br>>&gt; ~/.ssh/authorized_keys 又有啥作用？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存放允许登陆的公匙</p>
+</blockquote>
 
         
       
@@ -237,7 +266,7 @@
           <img class="site-author-image" src="/images/default_avatar.jpg" alt="xifan" />
           <p class="site-author-name">xifan</p>
         </div>
-        <p class="site-description motion-element">xifan' blog | python | java | ruby | javascript</p>
+        <p class="site-description motion-element">xifan' blog | vim | python | java | javascript</p>
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
@@ -255,7 +284,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">0</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
