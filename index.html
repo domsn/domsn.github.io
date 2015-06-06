@@ -161,7 +161,7 @@
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/categories/level-up/">level up</a>
+              <a href="/categories/LEVEL-UP/">LEVEL UP</a>
 
               
               
@@ -196,7 +196,7 @@
 <li>你还在使用各种各样的SSH工具，来连接服务器？</li>
 <li>系统重装/迁移环境/工具更换，需要各种备份/导入/导出？</li>
 <li>更换环境的时候，会不会为每个服务器的配置所烦恼？</li>
-<li>作为码农，使用这样的工具不够逼格！这样不够Cool!</li>
+<li>这样不够Cool!</li>
 </ul>
 </blockquote>
 <h4 id="系统要求">系统要求</h4><pre><code>OS <span class="keyword">X</span> / Linux, 本人使用的环境是OS <span class="keyword">X</span>。
@@ -213,9 +213,9 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#我的服务器</span></span><br><span class="line">Host mine</span><br><span class="line">HostName xifan.me</span><br><span class="line">Port <span class="number">12345</span></span><br><span class="line">User xifan</span><br><span class="line"></span><br><span class="line"><span class="comment">#公司测试服务器</span></span><br><span class="line">Host c.t</span><br><span class="line">HostName <span class="number">172.42</span>.<span class="number">23.177</span></span><br><span class="line">Port <span class="number">22222</span></span><br><span class="line">User root</span><br></pre></td></tr></table></figure>
 <h4 id="连接服务器">连接服务器</h4><p>打开你的Terminal，连接我的服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh mine</span><br></pre></td></tr></table></figure></p>
 <p>连接公司测试服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh c.t</span><br></pre></td></tr></table></figure></p>
-<p>根据提示输入服务器密码，即可登陆成功。<br>有没有觉得很Cool，只要合理命名服务器，你就可以很简单的连接服务器，根本无需第三方软件，带着你的配置文件到任何地方都可以直接使用！</p>
+<p>根据提示输入服务器密码，即可登陆成功。<br>合理命名服务器，带着你的配置文件，说走就走，So Cool！</p>
 <h4 id="免密码登陆">免密码登陆</h4><blockquote>
-<p>虽然上面很Cool，但我想说，其实可以更Cool！<br>每次都要手动输入密码，码农是不能接受的，是的，不够Cool！</p>
+<p>虽然上面很Cool，但我想说，其实可以更Cool！<br>每次都要手动输入密码，是的，不够Cool！</p>
 </blockquote>
 <p>使用ssh-keygen生成密钥，一路回车，全部使用默认值，会生成一个公匙(~/.ssh/id_rsa.pub)和私匙(~/.ssh/id_rsa)。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
 <p>使用ssh-copy-id把你的公匙复制到对应的服务器，这样就可以免密码登陆了。</p>
@@ -224,11 +224,11 @@
 </blockquote>
 <p>复制公匙到我的服务器，根据提示输入密码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#参数p,代表端口(可选)</span></span><br><span class="line">$ ssh-copy-id -p <span class="number">12345</span> xifan.me</span><br></pre></td></tr></table></figure></p>
 <p>再此尝试登陆我的服务器<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh xifan</span><br></pre></td></tr></table></figure></p>
-<p><strong>不用密码就是那么Cool！</strong><br><strong>带上你的配置文件和公匙私匙！</strong><br><strong>走到哪都可以很方便的免密码登陆服务器！</strong></p>
+<p><strong>不用密码，So Cool！</strong><br><strong>带上你的配置文件和公匙私匙！</strong><br><strong>走到哪都可以很方便的免密码登陆服务器！</strong></p>
 <h4 id="番外篇">番外篇</h4><blockquote>
 <p>>&gt; ssh-copy-id 到底干了什么？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;他就是把你的公匙内容追加到服务器的这个文件末尾 ~/.ssh/authorized_keys<br>>&gt; ~/.ssh/authorized_keys 又有啥作用？<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存放允许登陆的公匙</p>
 </blockquote>
-
+<h1 id="Mission_Completed!">Mission Completed!</h1>
         
       
     </div>
@@ -288,7 +288,7 @@
 
           <div class="site-state-item site-state-categories">
             
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">分类</span>
               
           </div>
