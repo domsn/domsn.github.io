@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on xifan - a blog</title>
+    <link>http://xifan.me/tags/</link>
+    <description>Recent content in Tags on xifan - a blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 05 Jun 2015 17:26:31 +0000</lastBuildDate>
+    
+	<atom:link href="http://xifan.me/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ssh</title>
+      <link>http://xifan.me/tags/ssh/</link>
+      <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
+      
+      <guid>http://xifan.me/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssh-copy-id</title>
+      <link>http://xifan.me/tags/ssh-copy-id/</link>
+      <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
+      
+      <guid>http://xifan.me/tags/ssh-copy-id/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssh-keygen</title>
+      <link>http://xifan.me/tags/ssh-keygen/</link>
+      <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
+      
+      <guid>http://xifan.me/tags/ssh-keygen/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

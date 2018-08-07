@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on xifan - a blog</title>
+    <link>http://xifan.me/categories/</link>
+    <description>Recent content in Categories on xifan - a blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="http://xifan.me/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>LEVEL UP</title>
+      <link>http://xifan.me/categories/level-up/</link>
+      <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
+      
+      <guid>http://xifan.me/categories/level-up/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
