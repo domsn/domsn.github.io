@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xifan.me/post/k8s-prepare-you-need-a-chair/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/post/throw-ssh-software-to-be-cool/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -16,6 +23,34 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/free/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/k8s/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/kubernetes/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/categories/kubernetes/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/categories/level-up/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -24,7 +59,21 @@
   
   <url>
     <loc>http://xifan.me/post/</loc>
-    <lastmod>2015-06-05T17:26:31+00:00</lastmod>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/privoxy/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/shadowsocks/</loc>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -52,14 +101,14 @@
   
   <url>
     <loc>http://xifan.me/tags/</loc>
-    <lastmod>2015-06-05T17:26:31+00:00</lastmod>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/</loc>
-    <lastmod>2015-06-05T17:26:31+00:00</lastmod>
+    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

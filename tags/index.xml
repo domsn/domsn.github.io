@@ -6,10 +6,55 @@
     <description>Recent content in Tags on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 05 Jun 2015 17:26:31 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 15:46:07 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Free</title>
+      <link>http://xifan.me/tags/free/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/free/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>K8s</title>
+      <link>http://xifan.me/tags/k8s/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>http://xifan.me/tags/kubernetes/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Privoxy</title>
+      <link>http://xifan.me/tags/privoxy/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/privoxy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shadowsocks</title>
+      <link>http://xifan.me/tags/shadowsocks/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/shadowsocks/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Ssh</title>

@@ -6,10 +6,19 @@
     <description>Recent content on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 05 Jun 2015 17:26:31 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Aug 2018 15:46:07 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅</title>
+      <link>http://xifan.me/post/k8s-prepare-you-need-a-chair/</link>
+      <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/k8s-prepare-you-need-a-chair/</guid>
+      <description>1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s</description>
+    </item>
     
     <item>
       <title>扔掉你的SSH工具吧</title>

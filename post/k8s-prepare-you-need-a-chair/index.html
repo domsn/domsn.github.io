@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>扔掉你的SSH工具吧 - xifan - a blog</title>
+  <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅 - xifan - a blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="xifan" />
-  <meta name="description" content="故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份" />
+  <meta name="description" content="1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s" />
 
   <meta name="keywords" content="xifan" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.46" />
 
 
-<link rel="canonical" href="http://xifan.me/post/throw-ssh-software-to-be-cool/" />
+<link rel="canonical" href="http://xifan.me/post/k8s-prepare-you-need-a-chair/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,20 +49,16 @@
 
 
 
-<meta property="og:title" content="扔掉你的SSH工具吧" />
-<meta property="og:description" content="故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份" />
+<meta property="og:title" content="Kubernetes(k8s)之前期准备 - 你需要一把折椅" />
+<meta property="og:description" content="1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://xifan.me/post/throw-ssh-software-to-be-cool/" />
+<meta property="og:url" content="http://xifan.me/post/k8s-prepare-you-need-a-chair/" />
 
 
 
-<meta property="article:published_time" content="2015-06-05T17:26:31&#43;00:00"/>
+<meta property="article:published_time" content="2018-08-23T15:46:07&#43;08:00"/>
 
-<meta property="article:modified_time" content="2015-06-05T17:26:31&#43;00:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2018-08-23T15:46:07&#43;08:00"/>
 
 
 
@@ -70,20 +66,24 @@
 
 
 
-<meta itemprop="name" content="扔掉你的SSH工具吧">
-<meta itemprop="description" content="故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份">
-
-
-<meta itemprop="datePublished" content="2015-06-05T17:26:31&#43;00:00" />
-<meta itemprop="dateModified" content="2015-06-05T17:26:31&#43;00:00" />
-<meta itemprop="wordCount" content="790">
 
 
 
-<meta itemprop="keywords" content="ssh,ssh-keygen,ssh-copy-id," />
+
+<meta itemprop="name" content="Kubernetes(k8s)之前期准备 - 你需要一把折椅">
+<meta itemprop="description" content="1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s">
+
+
+<meta itemprop="datePublished" content="2018-08-23T15:46:07&#43;08:00" />
+<meta itemprop="dateModified" content="2018-08-23T15:46:07&#43;08:00" />
+<meta itemprop="wordCount" content="880">
+
+
+
+<meta itemprop="keywords" content="Kubernetes,k8s,shadowsocks,privoxy,free," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="扔掉你的SSH工具吧"/>
-<meta name="twitter:description" content="故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份"/>
+<meta name="twitter:title" content="Kubernetes(k8s)之前期准备 - 你需要一把折椅"/>
+<meta name="twitter:description" content="1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -146,16 +146,16 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">扔掉你的SSH工具吧</h1>
+      <h1 class="post-title">Kubernetes(k8s)之前期准备 - 你需要一把折椅</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2015-06-05 </span>
+        <span class="post-time"> 2018-08-23 </span>
         <div class="post-category">
             
-              <a href="/categories/level-up/"> LEVEL UP </a>
+              <a href="/categories/kubernetes/"> Kubernetes </a>
             
           </div>
-        <span class="more-meta"> 约 790 字 </span>
+        <span class="more-meta"> 约 880 字 </span>
         <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -169,21 +169,11 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
 <ul>
-<li>
-<ul>
-<li>
-<ul>
-<li>
-<ul>
-<li><a href="#故事背景">故事背景</a></li>
-<li><a href="#系统要求">系统要求</a></li>
-<li><a href="#配置服务器">配置服务器</a></li>
-<li><a href="#连接服务器">连接服务器</a></li>
-<li><a href="#免密码登陆">免密码登陆</a></li>
-<li><a href="#番外篇">番外篇</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-安装shadowsocks及相关">3. 安装Shadowsocks及相关</a></li>
+<li><a href="#4-安装配置privoxy">4. 安装配置Privoxy</a></li>
+<li><a href="#5-测试">5. 测试</a></li>
 </ul>
 </nav>
   </div>
@@ -196,118 +186,144 @@
     <div class="post-content">
       
 
-<h4 id="故事背景">故事背景</h4>
+<h1 id="1-故事背景">1. 故事背景</h1>
 
-<p><em>如果你存在下面的情况，我想你可以继续看下去！</em></p>
+<p><strong>如果你并非身处大陆，可以Pass</strong></p>
 
 <blockquote>
-<ul>
-<li>你还在使用各种各样的SSH工具，来连接服务器？</li>
-<li>系统重装/迁移环境/工具更换，需要各种备份/导入/导出？</li>
-<li>更换环境的时候，会不会为每个服务器的配置所烦恼？</li>
-<li>这样不够Cool!</li>
-</ul>
+<p>最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒</p>
+
+<p>清醒后，我总不能等到TA回来了再学K8s啊</p>
+
+<p>开始翻阅<a href="https://kubernetes.io/">官网</a>，一顿操作猛如虎</p>
+
+<p>发现全屏404，这个熟悉的状态码，难倒了多少英雄好汉</p>
 </blockquote>
 
-<h4 id="系统要求">系统要求</h4>
+<p><strong>如果你也是，以下可以一阅</strong></p>
 
-<pre><code>OS X / Linux, 本人使用的环境是OS X。
-</code></pre>
-
-<h4 id="配置服务器">配置服务器</h4>
-
-<p>编辑SSH配置文件</p>
-
-<pre><code class="language-bash">$ vi ~/.ssh/config
-</code></pre>
-
-<p>添加服务器信息，常用属性如下：</p>
+<h1 id="2-提前准备">2. 提前准备</h1>
 
 <ul>
-<li>Host 服务器的别名，便于SSH连接，可根据实际情况命名</li>
-<li>HostName 服务器的域名/IP地址</li>
-<li>Port 端口（可选），如果是默认端口可不填</li>
-<li>User SSH连接的用户</li>
+<li>一台可以让你看到200的服务器（一般在美帝）</li>
+<li>搭建好Shadowsocks</li>
 </ul>
 
-<p>下面举两个例子,每个例子为一个服务器的配置（间隔使用空行）：</p>
-
-<pre><code class="language-bash">#我的服务器
-Host mine
-HostName xifan.me
-Port 12345
-User xifan
-
-#公司测试服务器
-Host c.t
-HostName 172.42.23.177
-Port 22222
-User root
-</code></pre>
-
-<h4 id="连接服务器">连接服务器</h4>
-
-<p>打开你的Terminal，连接我的服务器</p>
-
-<pre><code class="language-bash">$ ssh mine
-</code></pre>
-
-<p>连接公司测试服务器</p>
-
-<pre><code class="language-bash">$ ssh c.t
-</code></pre>
-
-<p>根据提示输入服务器密码，即可登陆成功。
-合理命名服务器，带着你的配置文件，说走就走，So Cool！</p>
-
-<h4 id="免密码登陆">免密码登陆</h4>
-
 <blockquote>
-<p>虽然上面很Cool，但我想说，其实可以更Cool！</p>
-
-<p>每次都要手动输入密码，是的，不够Cool！</p>
+<p>注：以上我都没有，双手打字表示清白</p>
 </blockquote>
 
-<p>使用ssh-keygen生成密钥，一路回车，全部使用默认值，会生成一个公匙(~/.ssh/id_rsa.pub)和私匙(~/.ssh/id_rsa)。</p>
+<p>本次试验是在<code>CentOS 7</code>系统,<code>root</code>用户下进行</p>
 
-<pre><code class="language-bash">$ ssh-keygen -t rsa 
+<h1 id="3-安装shadowsocks及相关">3. 安装Shadowsocks及相关</h1>
+
+<p>安装epel源、pip包管理、shadowsocks</p>
+
+<pre><code class="language-bash">sudo yum -y install epel-release
+sudo yum -y install python-pip
+sudo pip install shadowsocks
 </code></pre>
 
-<p>使用ssh-copy-id把你的公匙复制到对应的服务器，这样就可以免密码登陆了。</p>
+<p>新建配置文件、默认不存在</p>
 
-<blockquote>
-<p>如果你用Linux，那么恭喜你，你应该可以直接用。
-如果你用OS X，那您还需要安装<code>brew install ssh-copy-id</code>，但如果你连brew都还没安装，那请你参考 <a href="http://brew.sh/" title="Homwbrew">brew.sh</a>，只能帮到你这里了。</p>
-</blockquote>
-
-<p>复制公匙到我的服务器，根据提示输入密码</p>
-
-<pre><code class="language-bash">#参数p,代表端口(可选)
-$ ssh-copy-id -p 12345 xifan.me
+<pre><code class="language-bash">sudo mkdir /etc/shadowsocks
+sudo vi /etc/shadowsocks/shadowsocks.json
 </code></pre>
 
-<p>再此尝试登陆我的服务器</p>
+<p>文件<code>/etc/shadowsocks/shadowsocks.json</code>具体配置</p>
 
-<pre><code class="language-bash">$ ssh xifan
+<pre><code class="language-json"># 注释版
+{
+    &quot;server&quot;:&quot;xx.xx.xx.xx&quot;,  # Shadowsocks服务器地址
+    &quot;server_port&quot;:4433,  # Shadowsocks服务器端口
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;, # 本地IP
+    &quot;local_port&quot;:1080,  # 本地端口
+    &quot;password&quot;:&quot;xxxxxxxxx&quot;, # Shadowsocks连接密码
+    &quot;timeout&quot;:300,  # 等待超时时间
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,  # 加密方式
+    &quot;fast_open&quot;: false,  # true或false。开启fast_open以降低延迟，但要求Linux内核在3.7+
+    &quot;workers&quot;: 1  #工作线程数 
+}
+
+# 没有注释版，方便复制使用
+{
+    &quot;server&quot;:&quot;xx.xx.xx.xx&quot;,
+    &quot;server_port&quot;:4433,
+    &quot;local_address&quot;: &quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:1080,
+    &quot;password&quot;:&quot;xxxxxxxxx&quot;,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;aes-256-cfb&quot;,
+    &quot;fast_open&quot;: false,
+    &quot;workers&quot;: 1
+}
 </code></pre>
 
-<p><strong>不用密码，So Cool！</strong>
-<strong>带上你的配置文件和公匙私匙！</strong>
-<strong>走到哪都可以很方便的免密码登陆服务器！</strong></p>
+<p>配置自启动,新建启动脚本文件<code>/etc/systemd/system/shadowsocks.service</code>，内容如下：</p>
 
-<h4 id="番外篇">番外篇</h4>
+<pre><code>[Unit]
+Description=Shadowsocks
+[Service]
+TimeoutStartSec=0
+ExecStart=/usr/bin/sslocal -c /etc/shadowsocks/shadowsocks.json
+[Install]
+WantedBy=multi-user.target
+</code></pre>
 
-<blockquote>
-<p>&gt;&gt; ssh-copy-id 到底干了什么？</p>
+<p>启动Shadowsocks服务</p>
 
-<p>他就是把你的公匙内容追加到服务器的这个文件末尾 ~/.ssh/authorized_keys
-&gt;&gt; ~/.ssh/authorized_keys 又有啥作用？</p>
+<pre><code class="language-bash">systemctl enable shadowsocks.service
+systemctl start shadowsocks.service
+systemctl status shadowsocks.service
+</code></pre>
 
-<p>存放允许登陆的公匙</p>
-</blockquote>
+<p>验证Shadowsocks客户端服务是否正常运行</p>
 
-<p><strong>Mission Completed!</strong>
-<strong>(END)</strong></p>
+<pre><code>curl --socks5 127.0.0.1:1080 http://httpbin.org/ip
+</code></pre>
+
+<h1 id="4-安装配置privoxy">4. 安装配置Privoxy</h1>
+
+<p>通过Privoxy把Shadowsocks的<code>socks5</code>服务转成<code>http</code>服务</p>
+
+<p>安装</p>
+
+<pre><code class="language-bash">yum install privoxy -y
+systemctl enable privoxy
+systemctl start privoxy
+systemctl status privoxy
+</code></pre>
+
+<p>配置privoxy,修改配置文件<code>/etc/privoxy/config</code></p>
+
+<pre><code>listen-address 127.0.0.1:8118 # 8118 是默认端口，不用改
+forward-socks5t / 127.0.0.1:1080 . #转发到本地端口，注意最后有个点
+</code></pre>
+
+<p>设置http、https代理，在<code>/etc/profile</code>文件最后添加如下信息</p>
+
+<pre><code>PROXY_HOST=127.0.0.1
+export http_proxy=http://$PROXY_HOST:8118
+export https_proxy=http://$PROXY_HOST:8118
+</code></pre>
+
+<h1 id="5-测试">5. 测试</h1>
+
+<p>重载环境变量</p>
+
+<pre><code class="language-bash">source /etc/profile
+</code></pre>
+
+<p>验证</p>
+
+<pre><code class="language-bash">curl google.com
+</code></pre>
+
+<p>取消代理（我承认这个方法很挫）</p>
+
+<pre><code># 把配置文件/etc/profile在上面加入的配置全注释了，重载此文件，并执行下面取消此环境变量
+while read var; do unset $var; done &lt; &lt;(env | grep -i proxy | awk -F= '{print $1}')
+</code></pre>
 
     </div>
 
@@ -319,7 +335,7 @@ $ ssh-copy-id -p 12345 xifan.me
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2015-06-05</span>
+    <span class="item-content">2018-08-23</span>
   </p>
   
   
@@ -348,23 +364,27 @@ $ ssh-copy-id -p 12345 xifan.me
     <footer class="post-footer">
       <div class="post-tags">
           
-          <a href="/tags/ssh/">ssh</a>
+          <a href="/tags/kubernetes/">Kubernetes</a>
           
-          <a href="/tags/ssh-keygen/">ssh-keygen</a>
+          <a href="/tags/k8s/">k8s</a>
           
-          <a href="/tags/ssh-copy-id/">ssh-copy-id</a>
+          <a href="/tags/shadowsocks/">shadowsocks</a>
+          
+          <a href="/tags/privoxy/">privoxy</a>
+          
+          <a href="/tags/free/">free</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/k8s-prepare-you-need-a-chair/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">Kubernetes(k8s)之前期准备 - 你需要一把折椅</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
+          <a class="next" href="/post/throw-ssh-software-to-be-cool/">
+            <span class="next-text nav-default">扔掉你的SSH工具吧</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
       </nav>
     </footer>
   </article>
@@ -375,10 +395,10 @@ $ ssh-copy-id -p 12345 xifan.me
     <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
   <script type="text/javascript">
   const gitment = new Gitment({
-    id: '2015-06-05 17:26:31 \x2b0000 UTC',
-    title: '扔掉你的SSH工具吧',
+    id: '2018-08-23 15:46:07 \x2b0800 CST',
+    title: 'Kubernetes(k8s)之前期准备 - 你需要一把折椅',
     link: decodeURI(location.href),
-    desc: '故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装\/迁移环境\/工具更换，需要各种备份',
+    desc: '1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s',
     owner: 'domsn',
     repo: 'comment',
     oauth: {
