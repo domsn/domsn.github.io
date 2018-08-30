@@ -6,7 +6,7 @@
     <description>Recent content in Tags on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 29 Aug 2018 14:05:37 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Aug 2018 14:05:37 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>DevOps</title>
       <link>http://xifan.me/tags/devops/</link>
-      <pubDate>Wed, 29 Aug 2018 14:05:37 +0800</pubDate>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/devops/</guid>
       <description></description>
@@ -32,7 +32,7 @@
     <item>
       <title>Gitlab</title>
       <link>http://xifan.me/tags/gitlab/</link>
-      <pubDate>Wed, 29 Aug 2018 14:55:38 +0800</pubDate>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/gitlab/</guid>
       <description></description>
@@ -41,7 +41,7 @@
     <item>
       <title>Gitlab-CI</title>
       <link>http://xifan.me/tags/gitlab-ci/</link>
-      <pubDate>Wed, 29 Aug 2018 14:55:38 +0800</pubDate>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/gitlab-ci/</guid>
       <description></description>
@@ -59,7 +59,7 @@
     <item>
       <title>K8s</title>
       <link>http://xifan.me/tags/k8s/</link>
-      <pubDate>Wed, 29 Aug 2018 14:05:37 +0800</pubDate>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/k8s/</guid>
       <description></description>
@@ -68,7 +68,7 @@
     <item>
       <title>Kubernetes</title>
       <link>http://xifan.me/tags/kubernetes/</link>
-      <pubDate>Wed, 29 Aug 2018 14:05:37 +0800</pubDate>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/kubernetes/</guid>
       <description></description>

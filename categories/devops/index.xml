@@ -6,10 +6,19 @@
     <description>Recent content in DevOps on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 29 Aug 2018 14:55:38 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Aug 2018 14:05:37 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</title>
+      <link>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</link>
+      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</guid>
+      <description>1. 故事背景 如果你在使用gitlab-ci，也在使用k8s，但不知道怎么集成（就是通过gitlab-ci调用k8s），那你可以看看。 没过CET</description>
+    </item>
     
     <item>
       <title>Gitlab-CI - 安装Gitlab-Runner</title>
@@ -18,15 +27,6 @@
       
       <guid>http://xifan.me/post/install-gitlab-runner/</guid>
       <description>1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但</description>
-    </item>
-    
-    <item>
-      <title>DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</title>
-      <link>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</link>
-      <pubDate>Wed, 29 Aug 2018 14:05:37 +0800</pubDate>
-      
-      <guid>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</guid>
-      <description>1. 故事背景 如果你在使用gitlab-ci，也在使用k8s，但不知道怎么集成（就是通过gitlab-ci调用k8s），那你可以看看。 没过CET</description>
     </item>
     
     <item>
