@@ -3,6 +3,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xifan.me/post/install-gitlab-runner/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</loc>
+    <lastmod>2018-08-29T14:05:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/post/k8s-prepare-you-need-a-chair/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -23,6 +37,20 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/devops/</loc>
+    <lastmod>2018-08-29T14:05:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/categories/devops/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/tags/free/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -30,22 +58,36 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/gitlab/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/gitlab-ci/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/gitlab-runner/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/tags/k8s/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <lastmod>2018-08-29T14:05:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/tags/kubernetes/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://xifan.me/categories/kubernetes/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <lastmod>2018-08-29T14:05:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -59,7 +101,7 @@
   
   <url>
     <loc>http://xifan.me/post/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -101,14 +143,14 @@
   
   <url>
     <loc>http://xifan.me/tags/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <lastmod>2018-08-29T14:05:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/</loc>
-    <lastmod>2018-08-23T15:46:07+08:00</lastmod>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

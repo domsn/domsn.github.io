@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Kubernetes on xifan - a blog</title>
-    <link>http://xifan.me/tags/kubernetes/</link>
-    <description>Recent content in Kubernetes on xifan - a blog</description>
+    <title>DevOps on xifan - a blog</title>
+    <link>http://xifan.me/categories/devops/</link>
+    <description>Recent content in DevOps on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 29 Aug 2018 14:05:37 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 29 Aug 2018 14:55:38 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://xifan.me/categories/devops/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Gitlab-CI - 安装Gitlab-Runner</title>
+      <link>http://xifan.me/post/install-gitlab-runner/</link>
+      <pubDate>Wed, 29 Aug 2018 14:55:38 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/install-gitlab-runner/</guid>
+      <description>1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但</description>
+    </item>
     
     <item>
       <title>DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</title>
