@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-08-30T14:05:37&#43;08:00" />
 <meta itemprop="dateModified" content="2018-08-30T14:05:37&#43;08:00" />
-<meta itemprop="wordCount" content="1745">
+<meta itemprop="wordCount" content="1748">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1745 字 </span>
+        <span class="more-meta"> 约 1748 字 </span>
         <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -197,7 +197,7 @@
 <h1 id="2-提前准备">2. 提前准备</h1>
 
 <ul>
-<li>本次试验是在<code>CentOS 7</code>系统,<code>root</code>用户下进行</li>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
 <li>Gitlab环境</li>
 <li>拥有<code>Runner executor</code>为<code>docker</code>的Gitlab-Runner（有<code>Docker</code>执行环境即可）</li>
 <li>Kubernetes(k8s)集群</li>
@@ -346,7 +346,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: opendata
-    namespace: opendata
+  namespace: opendata
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
@@ -480,6 +480,11 @@ eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdMJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiw
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/install-kubernetes-master-by-kubeadm-in-centos7/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在CentOS7中通过kubeadm安装Kubernetes(k8s) Master</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
           <a class="next" href="/post/install-gitlab-runner/">
             <span class="next-text nav-default">Gitlab-CI - 安装Gitlab-Runner</span>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master" />
+<meta property="og:description" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/" />
+
+
+
+<meta property="article:published_time" content="2018-09-13T20:30:18&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-09-13T20:30:18&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master">
+<meta itemprop="description" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里">
+
+
+<meta itemprop="datePublished" content="2018-09-13T20:30:18&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-13T20:30:18&#43;08:00" />
+<meta itemprop="wordCount" content="1696">
+
+
+
+<meta itemprop="keywords" content="DevOps,Kubernetes,kubeadm,k8s," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master"/>
+<meta name="twitter:description" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">在CentOS7中通过kubeadm安装Kubernetes(k8s) Master</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-13 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 1696 字 </span>
+        <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-安装kubeadm">3. 安装kubeadm</a></li>
+<li><a href="#4-初始化master">4. 初始化master</a>
+<ul>
+<li><a href="#选择pod网络插件">选择pod网络插件</a></li>
+<li><a href="#初始化">初始化</a></li>
+<li><a href="#安装pod网络">安装pod网络</a></li>
+</ul></li>
+<li><a href="#master隔离">Master隔离</a></li>
+<li><a href="#结果">结果</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<p><strong>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master</strong></p>
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<blockquote>
+<p>如果你存下以下情况或者需求，满足一个就可以往下读</p>
+</blockquote>
+
+<ul>
+<li>没钱用阿里云的Kubernetes服务</li>
+<li>没钱用AWS的Kubernetes服务</li>
+<li>没钱用其他云的Kubernetes服务</li>
+<li>以上均是</li>
+</ul>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
+<li>拥有访问<code>Google</code>的能力，如果你有科学上网的能力，应用到<code>CentOS7</code>可以<a href="https://xifan.me/post/k8s-prepare-you-need-a-chair/">参考</a></li>
+<li>本次安装的Kubernetes版本是<code>1.11.x</code></li>
+</ul>
+
+<h1 id="3-安装kubeadm">3. 安装kubeadm</h1>
+
+<p>源头来自：<a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/">官网参考</a>，下面是我实践后的简化步骤。</p>
+
+<p><strong>1. 前面有几步检查系统情况（细节查上面链接）</strong></p>
+
+<p><strong>2. 安装docker 并启动</strong></p>
+
+<pre><code class="language-bash">yum install -y docker
+systemctl enable docker &amp;&amp; systemctl start docker
+</code></pre>
+
+<p><strong>3. 安装kubelet、kubeadm、kubectl</strong></p>
+
+<p>如果你有梯子，照着官网的做法即可，如下:</p>
+
+<p>添加k8s的官方源</p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+</code></pre>
+
+<p>否则添加阿里云的k8s源</p>
+
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=0
+repo_gpgcheck=0
+gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg
+       http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg
+EOF
+</code></pre>
+
+<p>执行安装 kubelet kubeadm kubectl</p>
+
+<pre><code>setenforce 0
+yum install -y kubelet kubeadm kubectl
+systemctl enable kubelet &amp;&amp; systemctl start kubelet
+</code></pre>
+
+<hr />
+
+<blockquote>
+<p>注意：这里kubelet启动不起来是正常的（不信你执行journalctl -xeu kubelet看看），当kubeadm init后就会OK</p>
+</blockquote>
+
+<hr />
+
+<blockquote>
+<p>注意：这比对cgruop（细节查上面链接），其实这步可以忽略，在k8s v1.11.0 Release Notes <a href="https://kubernetes.io/docs/imported/release/notes/">https://kubernetes.io/docs/imported/release/notes/</a> 里有描述到（等有新版本的时候，这个链接可能就查不到此信息了）</p>
+
+<pre><code>kubeadm now detects the Docker cgroup driver and starts the kubelet with the matching 
+driver. This eliminates a common error experienced by new users in when the Docker 
+cgroup driver is not the same as the one set for the kubelet due to different Linux 
+distributions setting different cgroup drivers for Docker, making it hard to start 
+the kubelet properly.
+</code></pre>
+</blockquote>
+
+<h1 id="4-初始化master">4. 初始化master</h1>
+
+<h2 id="选择pod网络插件">选择pod网络插件</h2>
+
+<p>源头来自：<a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network">官网参考</a></p>
+
+<p>这里只是选择，还不需要安装，插件的不同参数<code>--pod-network-cidr</code>会有不同的值，在<code>kubeadm init</code>时有用，我这里选了<code>flannel</code>。</p>
+
+<h2 id="初始化">初始化</h2>
+
+<pre><code># 指定版本，使用flannel作为pod网络
+kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.11.0
+# 不指定版本
+kubeadm init --pod-network-cidr=10.244.0.0/16
+</code></pre>
+
+<blockquote>
+<p>这个时候，你可能需要科学上网</p>
+</blockquote>
+
+<p><strong>假设你没有办法科学上网</strong></p>
+
+<p>可以通过第三方的容器镜像服务，下载对应的<code>K8s Docker镜像</code>，在本地打Tag骗K8S。</p>
+
+<p>提供这样服务的有阿里云、<a href="https://hub.docker.com/">Docker Hub</a>等。具体的做法<code>Google</code>有非常多。</p>
+
+<p><strong>如果有（我用的是这种方式）</strong></p>
+
+<ol>
+<li><p>改变docker的代理，<a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">官方参考</a></p>
+
+<ul>
+<li><p>创建文件夹</p>
+
+<pre><code>sudo mkdir -p /etc/systemd/system/docker.service.d
+vim /etc/systemd/system/docker.service.d/http-proxy.conf
+</code></pre></li>
+
+<li><p>编辑文件内容</p>
+
+<pre><code># HTTP_PROXY设置代理地址，NO_PROXY设置不需要走代理的地址
+[Service] 
+Environment=&quot;HTTP_PROXY=http://proxy.example.com:80/&quot; &quot;NO_PROXY=localhost,127.0.0.1,docker-registry.somecorporation.com&quot;
+</code></pre></li>
+
+<li><p>刷新 &amp; 重启 Docker</p>
+
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre></li>
+</ul></li>
+
+<li><p>取消服务器本身的http代理</p></li>
+</ol>
+
+<blockquote>
+<p>为啥这样干</p>
+</blockquote>
+
+<ol>
+<li><p>因为<code>kubeadm init</code>的时候，需要下载k8s的镜像，所以需要设置docker的代理</p></li>
+
+<li><p>同理，初始化的时候，kubeadm会和服务器本身的局域网通讯，如果服务器自身的代理不取消，会出现无法访问或者访问拒绝的情况，因为外网的代理根本无法访问这个内网的IP</p></li>
+</ol>
+
+<blockquote>
+<p>注意：可以使用命令kubeadm config images pull来测试是否正常下载镜像（翻墙是否成功）</p>
+</blockquote>
+
+<hr />
+
+<blockquote>
+<p>提醒：如果<code>kubeadm init</code>出现了无法继续的情况（比如成功了一半那种），可以使用<code>kubeadm reset  --force</code>(这里是两个-）重置状态，然后重新init</p>
+</blockquote>
+
+<hr />
+
+<p><strong>初始化成功后，会输出一段类似这样的</strong></p>
+
+<pre><code># 这段要执行
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# 这个暂时不用，这段是后面node加入master时使用的
+kubeadm join 172.16.224.34:6443 --token lc8imt.grx159aia7115ngk --discovery-token-ca-cert-hash sha256:2174a53f2d7c7f59ee3d425e2da069a70c251e2192b3375e1361dcc50f46a066
+</code></pre>
+
+<blockquote>
+<p>注意：<code>kubeadm join</code>语句忘记了也没关系，通过命令可查看，<code>kubeadm token create --print-join-command</code></p>
+</blockquote>
+
+<h2 id="安装pod网络">安装pod网络</h2>
+
+<p>我选了<code>flannel</code></p>
+
+<pre><code>sysctl net.bridge.bridge-nf-call-iptables=1
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
+</code></pre>
+
+<h1 id="master隔离">Master隔离</h1>
+
+<p>默认情况下，出于安全原因，是不允许在master上调度pods。如果你想在master上调度pods，譬如用于研发的单主机k8s。你可以运行：</p>
+
+<pre><code>kubectl taint nodes --all node-role.kubernetes.io/master-
+</code></pre>
+
+<p>大概会输出：</p>
+
+<pre><code>node &quot;test-01&quot; untainted
+</code></pre>
+
+<p>如果你不执行上面那个命令，对于单主机的情况，你会发现你的pods会一直出于<code>Pending</code>状态</p>
+
+<h1 id="结果">结果</h1>
+
+<p>完成上面的步骤，等待一会（下载k8s的镜像），理论上可以初始化成功。</p>
+
+<blockquote>
+<p>注意：成功后，最好把Docker的代理取消，基本上后面是用不上的了（反正我是取消了），而且可以排除掉许多网络问题。（譬如你用阿里云镜像服务的内网地址）</p>
+</blockquote>
+
+<p>（这个过程是当时我搭建的非完整经历，当时记录了大概的过程，会有部分异常情况没记录下来，因为是搭建好后几周才写的这篇总结，所以可能会有所疏漏，如果你尝试了有问题，可以留言讨论）</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-09-13</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/devops/">DevOps</a>
+          
+          <a href="/tags/kubernetes/">Kubernetes</a>
+          
+          <a href="/tags/kubeadm/">kubeadm</a>
+          
+          <a href="/tags/k8s/">k8s</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/how-to-pull-private-docker-images-in-kubernetes/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">在Kubernetes(k8s)里如何拉取私有Docker镜像？</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/gitlab-ci-and-k8s-integration-road/">
+            <span class="next-text nav-default">DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-09-13 20:30:18 \x2b0800 CST',
+    title: '在CentOS7中通过kubeadm安装Kubernetes(k8s) Master',
+    link: decodeURI(location.href),
+    desc: '在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

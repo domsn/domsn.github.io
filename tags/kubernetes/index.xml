@@ -6,10 +6,37 @@
     <description>Recent content in Kubernetes on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Aug 2018 14:05:37 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 14 Sep 2018 02:30:46 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</title>
+      <link>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</link>
+      <pubDate>Fri, 14 Sep 2018 02:30:46 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</guid>
+      <description>Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞</description>
+    </item>
+    
+    <item>
+      <title>在Kubernetes(k8s)里如何拉取私有Docker镜像？</title>
+      <link>http://xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</link>
+      <pubDate>Thu, 13 Sep 2018 20:34:55 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</guid>
+      <description>在Kubernetes(k8s)里如何拉取私有Docker镜像？ 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 No.1 在Kuberne</description>
+    </item>
+    
+    <item>
+      <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master</title>
+      <link>http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</link>
+      <pubDate>Thu, 13 Sep 2018 20:30:18 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</guid>
+      <description>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里</description>
+    </item>
     
     <item>
       <title>DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</title>
@@ -21,7 +48,7 @@
     </item>
     
     <item>
-      <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅</title>
+      <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅（科学上网）</title>
       <link>http://xifan.me/post/k8s-prepare-you-need-a-chair/</link>
       <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
       

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Gitlab-CI - 安装Gitlab-Runner - xifan - a blog</title>
+  <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Node - xifan - a blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="xifan" />
-  <meta name="description" content="1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但" />
+  <meta name="description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞" />
 
   <meta name="keywords" content="xifan" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.46" />
 
 
-<link rel="canonical" href="http://xifan.me/post/install-gitlab-runner/" />
+<link rel="canonical" href="http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,20 +49,16 @@
 
 
 
-<meta property="og:title" content="Gitlab-CI - 安装Gitlab-Runner" />
-<meta property="og:description" content="1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但" />
+<meta property="og:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node" />
+<meta property="og:description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://xifan.me/post/install-gitlab-runner/" />
+<meta property="og:url" content="http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/" />
 
 
 
-<meta property="article:published_time" content="2018-08-29T14:55:38&#43;08:00"/>
+<meta property="article:published_time" content="2018-09-14T02:30:46&#43;08:00"/>
 
-<meta property="article:modified_time" content="2018-08-29T14:55:38&#43;08:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2018-09-14T02:30:46&#43;08:00"/>
 
 
 
@@ -70,20 +66,24 @@
 
 
 
-<meta itemprop="name" content="Gitlab-CI - 安装Gitlab-Runner">
-<meta itemprop="description" content="1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但">
-
-
-<meta itemprop="datePublished" content="2018-08-29T14:55:38&#43;08:00" />
-<meta itemprop="dateModified" content="2018-08-29T14:55:38&#43;08:00" />
-<meta itemprop="wordCount" content="724">
 
 
 
-<meta itemprop="keywords" content="Gitlab,Gitlab-CI,Gitlab-Runner," />
+
+<meta itemprop="name" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node">
+<meta itemprop="description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞">
+
+
+<meta itemprop="datePublished" content="2018-09-14T02:30:46&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-14T02:30:46&#43;08:00" />
+<meta itemprop="wordCount" content="913">
+
+
+
+<meta itemprop="keywords" content="DevOps,Kubernetes,kubeadm,k8s," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Gitlab-CI - 安装Gitlab-Runner"/>
-<meta name="twitter:description" content="1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但"/>
+<meta name="twitter:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node"/>
+<meta name="twitter:description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -146,16 +146,16 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">Gitlab-CI - 安装Gitlab-Runner</h1>
+      <h1 class="post-title">在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-08-29 </span>
+        <span class="post-time"> 2018-09-14 </span>
         <div class="post-category">
             
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 724 字 </span>
+        <span class="more-meta"> 约 913 字 </span>
         <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -171,9 +171,10 @@
 <ul>
 <li><a href="#1-故事背景">1. 故事背景</a></li>
 <li><a href="#2-提前准备">2. 提前准备</a></li>
-<li><a href="#3-安装gitlab-runner">3. 安装Gitlab-Runner</a></li>
-<li><a href="#4-注册gitlab-runner">4. 注册Gitlab-Runner</a></li>
-<li><a href="#5-常见问题">5. 常见问题</a></li>
+<li><a href="#3-安装kubeadm">3. 安装kubeadm</a></li>
+<li><a href="#4-准备k8s的镜像">4. 准备k8s的镜像</a></li>
+<li><a href="#加入master">加入master</a></li>
+<li><a href="#常见问题">常见问题</a></li>
 </ul>
 </nav>
   </div>
@@ -186,107 +187,114 @@
     <div class="post-content">
       
 
+<blockquote>
+<p>Node安装与Master安装会相对简单，会单独说明</p>
+</blockquote>
+
 <h1 id="1-故事背景">1. 故事背景</h1>
 
-<p>如果你用了<code>Gitlab</code>作为代码仓库，你又需要<code>CI/CD</code>工具，何须四处寻觅，<code>Gitlab</code>就自带了此工具。
-虽然<code>Jenkins</code>很强大，但绝没有<code>Gitlab-CI</code>用起来那么丝滑，都是一家人又何必分分合合。</p>
+<blockquote>
+<p>如果你存下以下情况或者需求，满足一个就可以往下读</p>
+</blockquote>
+
+<ul>
+<li>不想玩单机Master了</li>
+<li>囊中羞涩</li>
+<li>穷</li>
+<li>以上均是</li>
+</ul>
 
 <h1 id="2-提前准备">2. 提前准备</h1>
 
 <ul>
 <li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
-<li><code>Gitlab</code>环境</li>
+<li>拥有访问<code>Google</code>的能力，如果你有科学上网的能力，应用到<code>CentOS7</code>可以<a href="https://xifan.me/post/k8s-prepare-you-need-a-chair/">参考</a></li>
+<li>拥有<code>Kubernetes Master</code>，如果没有可<a href="https://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/">参考</a></li>
+<li>本次安装的Kubernetes版本是<code>1.11.x</code></li>
 </ul>
 
-<h1 id="3-安装gitlab-runner">3. 安装Gitlab-Runner</h1>
+<h1 id="3-安装kubeadm">3. 安装kubeadm</h1>
+
+<p>这步和安装Master一致</p>
 
 <blockquote>
-<p>官方不建议<code>Gitlab-Runner</code>和<code>Gitlab</code>在同一台机器上</p>
+<p>注意：kubectl可以不用装，管理k8s基本上在Master机器上就可以了</p>
 </blockquote>
 
-<p><strong>选择安装方式</strong></p>
-
-<p><a href="https://docs.gitlab.com/runner/install/">官网</a>提供各种安装方式，我选择了<a href="https://docs.gitlab.com/runner/install/linux-repository.html">Repositories</a>方式，也是最简单的方式。</p>
-
-<p>添加Gitlab官方源</p>
-
-<pre><code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
-</code></pre>
-
-<p>安装最新版Gitlab-runner</p>
-
-<pre><code>sudo yum install -y gitlab-runner
-</code></pre>
-
-<h1 id="4-注册gitlab-runner">4. 注册Gitlab-Runner</h1>
-
-<p>根据你的安装方式，注册的方式也会有所不同，在<a href="https://docs.gitlab.com/runner/register/index.html">官网</a>都会有说明。</p>
-
-<p>在安装了<code>gitlab-runner</code>的机器上，输入</p>
-
-<pre><code>sudo gitlab-runner register
-</code></pre>
-
-<p>输入你的<code>Gitlab</code>地址</p>
-
-<pre><code># Please enter the gitlab-ci coordinator URL (e.g. https://gitlab.com/):
-http://gitlab.your-domain.com/
-</code></pre>
-
-<p>输入<code>gitlab-ci</code>的<code>token</code>，在👇的常见问题里会告诉你怎么找</p>
-
-<pre><code># Please enter the gitlab-ci token for this runner:
-your-token
-</code></pre>
-
-<p>输入<code>gitlab-ci</code>的描述，根据你的情况</p>
-
-<pre><code># Please enter the gitlab-ci description for this runner:
-[86fa96c778e3]: docker
-</code></pre>
-
-<p>输入<code>gitlab-ci</code>的标签，方便后面的runner的选择，多个用逗号分隔，后面也可以改</p>
-
-<pre><code># Please enter the gitlab-ci tags for this runner (comma separated):
-docker
-</code></pre>
-
-<p>选择<a href="https://docs.gitlab.com/runner/executors/README.html">Runner executor</a></p>
-
-<pre><code># Please enter the executor: virtualbox, docker, docker-ssh, ssh, docker-ssh+machine, kubernetes, parallels, shell, docker+machine:
-docker
-</code></pre>
-
-<p>如果你选择了Docker作为executor，还会让你输入默认的镜像</p>
-
-<pre><code># Please enter the default Docker image (e.g. ruby:2.1):
-alpine:latest
-</code></pre>
-
-<h1 id="5-常见问题">5. 常见问题</h1>
+<h1 id="4-准备k8s的镜像">4. 准备k8s的镜像</h1>
 
 <blockquote>
-<p>怎么知道注册成功了？</p>
+<p>注意：如果你可以顺利访问google，可以忽略！如果不能，请看<code>提前准备</code>的参考</p>
 </blockquote>
 
-<p>两种方式可以知道：</p>
+<p>因为装master的时候，相关的k8s镜像已经下过一遍，所以为了版本保持一致，最好先下载好，在master机器上通过<code>docker images</code>查看。</p>
 
-<p><strong>1.在命令行里注册完成后，会有类似相关的成功提示。</strong></p>
-
-<pre><code>Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded! 
+<pre><code># master的版本
+docker pull k8s.gcr.io/kube-apiserver-amd64:v1.11.0
+docker pull k8s.gcr.io/kube-controller-manager-amd64:v1.11.0
+docker pull k8s.gcr.io/kube-scheduler-amd64:v1.11.0
+docker pull k8s.gcr.io/kube-proxy-amd64:v1.11.0
+docker pull k8s.gcr.io/coredns:1.1.3
+docker pull k8s.gcr.io/etcd-amd64:3.2.18
+docker pull k8s.gcr.io/pause-amd64:3.1
+docker pull k8s.gcr.io/pause:3.1
 </code></pre>
 
-<p><strong>2.在gitlab-ui的后台可以看到，要用管理员登录，如下图：</strong>
-<img src="/install-gitlab-runner/register-runner-list.jpg" alt="成功会展现在列表里" /></p>
+<blockquote>
+<p>等镜像pull完，你可以把docker的科学上网去掉，你已经基本上不需要他了</p>
+</blockquote>
+
+<h1 id="加入master">加入master</h1>
+
+<p>在master初始化完毕后，会输出一段类似于以下的命令</p>
+
+<pre><code>kubeadm join 172.16.224.34:6443 --token fweifx.fs7f8w3f89sfhf --discovery-token-ca-cert-hash sha256:2174a53f2d7c7f59ee3d425e2da069a70c251e2192b3375e1361dcc50f46a066
+</code></pre>
 
 <hr />
 
-<blockquote>
-<p>注册的时候，<code>Gitlab地址</code>和<code>token</code>哪里找？</p>
-</blockquote>
+<p>如果你忘记了，没关系，下面这个命令会告诉你</p>
 
-<p>用管理员登录，在gitlab-ui的后台可以看到，如下图：
-<img src="/install-gitlab-runner/url-and-token.jpg" alt="在这里找" /></p>
+<pre><code># 注意：此命令在Master机器上执行，把输出结果在Node机器上执行
+kubeadm token create --print-join-command
+</code></pre>
+
+<hr />
+
+<p>如果你记录下来了，那可以直接在Node机器上执行，其中token是24小时有效，如果已经过期，可以使用以下命令获取。</p>
+
+<pre><code># 注意：此命令在Master机器上执行
+# 创建token
+&gt; kubeadm token create
+&gt; kubeadm token list
+TOKEN                     TTL       EXPIRES                     USAGES                   DESCRIPTION   EXTRA GROUPS
+lc8imt.grx159aia7115ngk   2h        2018-09-12T20:18:49+08:00   authentication,signing   &lt;none&gt;        system:bootstrappers:kubeadm:default-node-token
+
+# lc8imt.grx159aia7115ngk  就是你需要的token
+</code></pre>
+
+<p>所以最终的命令，替换如下</p>
+
+<pre><code>kubeadm join 172.16.224.34:6443 --token lc8imt.grx159aia7115ngk --discovery-token-ca-cert-hash sha256:2174a53f2d7c7f59ee3d425e2da069a70c251e2192b3375e1361dcc50f46a066
+</code></pre>
+
+<hr />
+
+<p>顺利的话，会告诉你加入成功，这个时候你在Master机器通过命令<code>kubectl get nodes</code>可以看到多了一个节点。
+一开始可能是<code>not ready</code>状态，有一些pod是需要同步到新节点上的，同步并启动完成后，就会变成<code>ready</code>状态。</p>
+
+<h1 id="常见问题">常见问题</h1>
+
+<p><strong>一直处于not ready状态</strong></p>
+
+<p>你需要使用命令<code>journalctl -xeu kubelet</code>看看日志，具体问题具体分析</p>
+
+<p><strong>搞乱了，想重新来</strong></p>
+
+<ol>
+<li>在master上删除node，<code>kubectl delete node {NODE_NAME}</code></li>
+<li>在worker上重置，<code>kubectl reset -f</code></li>
+</ol>
 
     </div>
 
@@ -298,7 +306,7 @@ alpine:latest
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2018-08-29</span>
+    <span class="item-content">2018-09-14</span>
   </p>
   
   
@@ -327,25 +335,22 @@ alpine:latest
     <footer class="post-footer">
       <div class="post-tags">
           
-          <a href="/tags/gitlab/">Gitlab</a>
+          <a href="/tags/devops/">DevOps</a>
           
-          <a href="/tags/gitlab-ci/">Gitlab-CI</a>
+          <a href="/tags/kubernetes/">Kubernetes</a>
           
-          <a href="/tags/gitlab-runner/">Gitlab-Runner</a>
+          <a href="/tags/kubeadm/">kubeadm</a>
+          
+          <a href="/tags/k8s/">k8s</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/gitlab-ci-and-k8s-integration-road/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/k8s-prepare-you-need-a-chair/">
-            <span class="next-text nav-default">Kubernetes(k8s)之前期准备 - 你需要一把折椅（科学上网）</span>
+          <a class="next" href="/post/how-to-pull-private-docker-images-in-kubernetes/">
+            <span class="next-text nav-default">在Kubernetes(k8s)里如何拉取私有Docker镜像？</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -359,10 +364,10 @@ alpine:latest
     <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
   <script type="text/javascript">
   const gitment = new Gitment({
-    id: '2018-08-29 14:55:38 \x2b0800 CST',
-    title: 'Gitlab-CI - 安装Gitlab-Runner',
+    id: '2018-09-14 02:30:46 \x2b0800 CST',
+    title: '在CentOS7中通过kubeadm安装Kubernetes(k8s) Node',
     link: decodeURI(location.href),
-    desc: '1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI\/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但',
+    desc: 'Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞',
     owner: 'domsn',
     repo: 'comment',
     oauth: {
