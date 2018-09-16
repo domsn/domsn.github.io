@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xifan.me/post/install-helm-and-alicloud-logtail/</loc>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -59,6 +66,13 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/alicloud/</loc>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
@@ -66,14 +80,14 @@
   
   <url>
     <loc>http://xifan.me/tags/devops/</loc>
-    <lastmod>2018-09-14T02:30:46+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/categories/devops/</loc>
-    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -121,6 +135,13 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/helm/</loc>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/tags/k8s/</loc>
     <lastmod>2018-09-14T02:30:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -149,6 +170,13 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/logtail/</loc>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/tags/nodejs/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -164,7 +192,7 @@
   
   <url>
     <loc>http://xifan.me/post/</loc>
-    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -206,21 +234,21 @@
   
   <url>
     <loc>http://xifan.me/tags/</loc>
-    <lastmod>2018-09-14T02:30:46+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/</loc>
-    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://xifan.me/tags/%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

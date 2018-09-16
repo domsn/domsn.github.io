@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【笔记】安装Helm和Alicloud Logtail - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/install-helm-and-alicloud-logtail/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="【笔记】安装Helm和Alicloud Logtail" />
+<meta property="og:description" content="1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/install-helm-and-alicloud-logtail/" />
+
+
+
+<meta property="article:published_time" content="2018-09-16T21:00:12&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-09-16T21:00:12&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="【笔记】安装Helm和Alicloud Logtail">
+<meta itemprop="description" content="1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前">
+
+
+<meta itemprop="datePublished" content="2018-09-16T21:00:12&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-16T21:00:12&#43;08:00" />
+<meta itemprop="wordCount" content="857">
+
+
+
+<meta itemprop="keywords" content="Logtail,Alicloud,DevOps,Helm,笔记," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【笔记】安装Helm和Alicloud Logtail"/>
+<meta name="twitter:description" content="1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【笔记】安装Helm和Alicloud Logtail</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-16 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 857 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-安装helm">3. 安装Helm</a>
+<ul>
+<li><a href="#3-1-安装client">3.1 安装Client</a></li>
+<li><a href="#3-2-创建用户tiller">3.2 创建用户tiller</a></li>
+<li><a href="#3-3-安装server-helm-init">3.3 安装server(helm init)</a></li>
+</ul></li>
+<li><a href="#4-安装logtail">4. 安装Logtail</a></li>
+<li><a href="#5-结束">5. 结束</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<p>原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用<code>Helm</code>来安装，这个过程也遇到一些坑，所以一起在这里记录下来。</p>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
+<li>Kubernetes(k8s)集群</li>
+</ul>
+
+<h1 id="3-安装helm">3. 安装Helm</h1>
+
+<p>一般需要两个步骤。</p>
+
+<ul>
+<li>安装Client</li>
+<li>安装Server（helm init）</li>
+</ul>
+
+<blockquote>
+<p>注意：如果安装期间遇到问题，可以使用<code>helm reset -f</code>，强制重置`</p>
+</blockquote>
+
+<p>期间我遇到两个坑。</p>
+
+<p><strong>1. helm init需要科学上网</strong></p>
+
+<p>有几个选择，最好的方案是使用阿里云的库</p>
+
+<p><strong>2. 安装helm chart遇到权限问题</strong></p>
+
+<p>报错信息截选</p>
+
+<pre><code>Error:
+  release alibaba-log-controller failed: namespaces &quot;default&quot; is forbidden:
+  User &quot;system:serviceaccount:kube-system:default&quot;
+  cannot get namespaces in the namespace &quot;default&quot;
+</code></pre>
+
+<p>说白了，默认的<code>default</code>用户没有权限，要么给这个用户修改权限，要么新建一个用户给helm使用。（新版本的K8S基于RBAC，经常会遇到这样的问题）</p>
+
+<h2 id="3-1-安装client">3.1 安装Client</h2>
+
+<p><a href="https://docs.helm.sh/using_helm/#from-script">官方参考传送门</a></p>
+
+<pre><code>curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+</code></pre>
+
+<h2 id="3-2-创建用户tiller">3.2 创建用户tiller</h2>
+
+<p>这里我选择了新建一个用户给<code>Helm</code>（这里给了很大的权限）</p>
+
+<p><strong>rbac-config.yml内容</strong></p>
+
+<pre><code>apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tiller
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: tiller
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: tiller
+  namespace: kube-system
+</code></pre>
+
+<p><strong>创建ServiceAccount和ClusterRoleBinding</strong></p>
+
+<pre><code>kubectl apply -f rbac-config.yml
+</code></pre>
+
+<h2 id="3-3-安装server-helm-init">3.3 安装server(helm init)</h2>
+
+<blockquote>
+<p><code>helm init</code>在缺省配置下</p>
+
+<ol>
+<li><p><code>Helm</code>会通过<code>gcr.io/kubernetes-helm/tiller</code>镜像安装配置<code>Tiller</code></p></li>
+
+<li><p>缺省仓库是<code>https://kubernetes-charts.storage.googleapis.com</code></p></li>
+</ol>
+
+<p>由于在国内可能无法访问<code>gcr.io</code>,<code>storage.googleapis.com</code>等域名，阿里云容器服务为此提供了镜像站点。</p>
+</blockquote>
+
+<p>这里我不使用科学上网（因为不会），使用阿里的镜像，同时把仓库的地址由改成<code>aliyun</code>，最后指定<code>ServiceAccount</code>为<code>tiller</code>，具体如下：</p>
+
+<pre><code>helm init --upgrade -i registry.cn-hangzhou.aliyuncs.com/google_containers/tiller:v2.10.0 --stable-repo-url https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts  --service-account tiller
+</code></pre>
+
+<h1 id="4-安装logtail">4. 安装Logtail</h1>
+
+<p><a href="https://help.aliyun.com/document_detail/66654.html?spm=a2c4g.11186623.6.580.41931260nVGOdl">官方参考传送门</a> - 自建Kubernetes安装方式</p>
+
+<pre><code>wget http://logtail-release-cn-hangzhou.oss-cn-hangzhou.aliyuncs.com/kubernetes/alicloud-log-k8s-custom-install.sh; chmod 744 ./alicloud-log-k8s-custom-install.sh; sh ./alicloud-log-k8s-custom-install.sh {your-project-suffix} {region-id} {aliuid} {access-key-id} {access-key-secret}
+</code></pre>
+
+<p>到这里就很容易了，根据阿里官网说明替换上对应的参数即可。</p>
+
+<h1 id="5-结束">5. 结束</h1>
+
+<p>如果还有其他的问题，可留言交流。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-09-16</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/logtail/">Logtail</a>
+          
+          <a href="/tags/alicloud/">Alicloud</a>
+          
+          <a href="/tags/devops/">DevOps</a>
+          
+          <a href="/tags/helm/">Helm</a>
+          
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/gitlab-runner-deployment-app-dependency-installation-guide/">
+            <span class="next-text nav-default">【笔记】Gitlab-runner之部署应用软件依赖安装指南</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-09-16 21:00:12 \x2b0800 CST',
+    title: '【笔记】安装Helm和Alicloud Logtail',
+    link: decodeURI(location.href),
+    desc: '1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>
