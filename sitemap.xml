@@ -3,6 +3,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</loc>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</loc>
     <lastmod>2018-09-14T02:30:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -66,7 +73,14 @@
   
   <url>
     <loc>http://xifan.me/categories/devops/</loc>
-    <lastmod>2018-09-14T02:30:46+08:00</lastmod>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/docker/</loc>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -88,6 +102,13 @@
   <url>
     <loc>http://xifan.me/tags/gitlab-ci/</loc>
     <lastmod>2018-08-30T14:05:37+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/gitlab-runner/</loc>
+    <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -128,8 +149,22 @@
   </url>
   
   <url>
+    <loc>http://xifan.me/tags/nodejs/</loc>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/php/</loc>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://xifan.me/post/</loc>
-    <lastmod>2018-09-14T02:30:46+08:00</lastmod>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
@@ -178,7 +213,14 @@
   
   <url>
     <loc>http://xifan.me/</loc>
-    <lastmod>2018-09-14T02:30:46+08:00</lastmod>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://xifan.me/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>

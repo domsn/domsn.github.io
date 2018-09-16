@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【笔记】Gitlab-runner之部署应用软件依赖安装指南 - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="【笔记】Gitlab-runner之部署应用软件依赖安装指南" />
+<meta property="og:description" content="1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/" />
+
+
+
+<meta property="article:published_time" content="2018-09-16T17:40:49&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-09-16T17:40:49&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="【笔记】Gitlab-runner之部署应用软件依赖安装指南">
+<meta itemprop="description" content="1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我">
+
+
+<meta itemprop="datePublished" content="2018-09-16T17:40:49&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-16T17:40:49&#43;08:00" />
+<meta itemprop="wordCount" content="1192">
+
+
+
+<meta itemprop="keywords" content="gitlab-runner,笔记,nodejs,php,docker," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【笔记】Gitlab-runner之部署应用软件依赖安装指南"/>
+<meta name="twitter:description" content="1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【笔记】Gitlab-runner之部署应用软件依赖安装指南</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-09-16 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 1192 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-软件安装">3. 软件安装</a>
+<ul>
+<li><a href="#3-1-nvm-node-cnpm">3.1 nvm &amp; node &amp; cnpm</a></li>
+<li><a href="#3-2-docker">3.2 docker</a></li>
+<li><a href="#3-3-php-composer">3.3 php &amp; composer</a></li>
+<li><a href="#3-4-jdk-maven">3.4 jdk &amp; maven</a></li>
+</ul></li>
+<li><a href="#4-软件设置">4. 软件设置</a>
+<ul>
+<li><a href="#4-1-gitlab-runner登录docker私有镜像仓库">4.1 gitlab-runner登录docker私有镜像仓库</a></li>
+</ul></li>
+<li><a href="#5-题外话">5. 题外话</a>
+<ul>
+<li><a href="#5-1-docker安装错了测试版">5.1 docker安装错了测试版</a></li>
+</ul></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<p>为了管理方便，只在一台机器上安装<code>Gitlab-runner</code>，同时注册多个<code>Executor</code>。目前我用的是<code>shell</code>和<code>docker</code>。</p>
+
+<p>我需要部署的语言环境有<code>php</code>、<code>nodejs</code>、<code>docker</code>、<code>java</code> ,需要的软件清单如下：</p>
+
+<ul>
+<li>nvm</li>
+<li>nodejs</li>
+<li>cnpm</li>
+<li>docker</li>
+<li>php-fpm</li>
+<li>composer</li>
+<li>jdk</li>
+<li>maven</li>
+</ul>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统</li>
+</ul>
+
+<h1 id="3-软件安装">3. 软件安装</h1>
+
+<h2 id="3-1-nvm-node-cnpm">3.1 nvm &amp; node &amp; cnpm</h2>
+
+<blockquote>
+<p>以下操作请使用<code>gitlab-runner</code>用户进行</p>
+</blockquote>
+
+<p><strong>安装nvm</strong></p>
+
+<p><a href="https://github.com/creationix/nvm#install-script">官方参考传送门</a></p>
+
+<p>安装</p>
+
+<pre><code>curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+</code></pre>
+
+<p>手动生效环境变量</p>
+
+<pre><code>source ~/.bashrc
+</code></pre>
+
+<p>查找你想装的版本</p>
+
+<pre><code>nvm list-remote
+</code></pre>
+
+<p><strong>安装nodejs</strong></p>
+
+<pre><code>nvm install v8.9.4
+</code></pre>
+
+<p><strong>安装cnpm</strong></p>
+
+<pre><code>npm i -g cnpm
+</code></pre>
+
+<h2 id="3-2-docker">3.2 docker</h2>
+
+<blockquote>
+<p>以下操作我使用了<code>root</code>用户进行</p>
+</blockquote>
+
+<p><a href="https://docs.docker.com/install/linux/docker-ce/centos/">官方参考传送门</a></p>
+
+<p>删除旧版本的<code>docker</code>（新的名字是<code>docker-ce</code>），不管有没有，直接执行</p>
+
+<pre><code>sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+</code></pre>
+
+<p>安装依赖</p>
+
+<pre><code>sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+</code></pre>
+
+<p>加stable yum源</p>
+
+<pre><code>sudo yum-config-manager \
+    --add-repo \ 
+    https://download.docker.com/linux/centos/docker-ce.repo 
+</code></pre>
+
+<p>安装docker-ce</p>
+
+<pre><code>sudo yum install -y docker-ce
+</code></pre>
+
+<p>启动docker</p>
+
+<pre><code>sudo systemctl start docker
+</code></pre>
+
+<h2 id="3-3-php-composer">3.3 php &amp; composer</h2>
+
+<blockquote>
+<p>以下操作我使用了<code>root</code>用户进行</p>
+</blockquote>
+
+<p><strong>安装php</strong></p>
+
+<p>安装epel-release</p>
+
+<pre><code>sudo yum -y install epel-release
+</code></pre>
+
+<p>先卸载php</p>
+
+<pre><code>sudo yum -y remove php* php7*
+</code></pre>
+
+<p>由于linux的yum源不存在php7.x，所以我们要更改yum源</p>
+
+<pre><code>sudo rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm   
+sudo rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm 
+</code></pre>
+
+<p>yum安装php72w和各种拓展，选自己需要的即可
+（扩展理论上不装也可以，composer只依赖php）</p>
+
+<pre><code>yum -y install php72w php72w-cli php72w-common php72w-devel php72w-embedded php72w-fpm php72w-gd php72w-mbstring php72w-mysqlnd php72w-opcache php72w-pdo php72w-xml
+</code></pre>
+
+<p><strong>安装composer</strong></p>
+
+<p><a href="https://getcomposer.org/download/">官方参考传送门</a></p>
+
+<pre><code>php -r &quot;copy('https://install.phpcomposer.com/installer', 'composer-setup.php');&quot;
+php composer-setup.php
+php -r &quot;unlink('composer-setup.php');&quot;
+mv composer.phar /usr/local/bin/composer
+</code></pre>
+
+<p>替换国内镜像，<a href="https://pkg.phpcomposer.com/">官方参考传送门</a></p>
+
+<pre><code>composer config -g repo.packagist composer https://packagist.phpcomposer.com
+</code></pre>
+
+<h2 id="3-4-jdk-maven">3.4 jdk &amp; maven</h2>
+
+<pre><code class="language-java">// TODO
+</code></pre>
+
+<h1 id="4-软件设置">4. 软件设置</h1>
+
+<h2 id="4-1-gitlab-runner登录docker私有镜像仓库">4.1 gitlab-runner登录docker私有镜像仓库</h2>
+
+<blockquote>
+<p>如果你需要push镜像到私有仓库（如阿里云镜像）， 以下操作请使用<code>gitlab-runner</code>用户进行</p>
+</blockquote>
+
+<pre><code># 登录
+docker login --username={your-username} {your-docker-repo-url}
+
+# 例子
+docker login --username=afanticar registry-vpc.cn-hangzhou.aliyuncs.com
+</code></pre>
+
+<blockquote>
+<p>注意！正常情况下，gitlab-runner是不可以操作docker的！</p>
+</blockquote>
+
+<p>一般会出现类似情况</p>
+
+<pre><code>Got permission denied while trying to connect to the Docker daemon socket
+</code></pre>
+
+<p>这是没权限的意思，只需要把用户gitlab-runner加入docker组即可</p>
+
+<pre><code>sudo usermod -a -G docker gitlab-runner
+</code></pre>
+
+<blockquote>
+<p>如果提示你没有<code>docker</code>这个组，那说明你安装的老版本的<code>docker</code>，我的办法是更新新版本</p>
+</blockquote>
+
+<h1 id="5-题外话">5. 题外话</h1>
+
+<h2 id="5-1-docker安装错了测试版">5.1 docker安装错了测试版</h2>
+
+<p>第一次更新docker版本的时候，看官方文档不认真，把以下这个可选项也执行了</p>
+
+<pre><code>sudo yum-config-manager --enable docker-ce-edge 
+sudo yum-config-manager --enable docker-ce-test 
+</code></pre>
+
+<p>这个开启后，其实会安装到测试版的docker，但我更新的是生产环境，当然不能用测试版。
+我是在安装完成后，发现他的名字居然含<code>beta</code>字样，这让我很不心安，于是打算重新安装稳定版。</p>
+
+<p>于是执行</p>
+
+<pre><code># 卸载 
+yum remove -y docker-ce
+
+# 关闭测试源 
+sudo yum-config-manager --disable docker-ce-edge 
+sudo yum-config-manager --disable docker-ce-test 
+
+# 重新安装
+yum install -y docker-ce
+</code></pre>
+
+<p>但是…却发生以下的报错截选</p>
+
+<pre><code>Transaction check error: 
+    file /usr/bin/docker from install of docker-ce-18.06.1.ce-3.el7.x86_64 conflicts with file from package docker-ce-cli-0:18.09.0.ce-1.1.beta1.el7.x86_64
+    ……….
+</code></pre>
+
+<p>这个根本不懂，google一条结果都没有…删掉部分继续google，折腾好久没效果。
+然后无意中看到别人删除yum库的时候，会指定具体的版本，于是乎，我做了以下有效的操作。</p>
+
+<pre><code># 卸载 
+yum remove docker-ce-cli-0:18.09.0.ce-1.1.beta1.el7.x86_64 
+
+# 重新安装
+yum install -y docker-ce
+</code></pre>
+
+<p>记得启动</p>
+
+<pre><code>sudo systemctl start docker
+</code></pre>
+
+<p>就这样成功了，记录一下经历，虽然意义不大。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-09-16</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/gitlab-runner/">gitlab-runner</a>
+          
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          
+          <a href="/tags/nodejs/">nodejs</a>
+          
+          <a href="/tags/php/">php</a>
+          
+          <a href="/tags/docker/">docker</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/install-kubernetes-node-by-kubeadm-in-centos7/">
+            <span class="next-text nav-default">在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-09-16 17:40:49 \x2b0800 CST',
+    title: '【笔记】Gitlab-runner之部署应用软件依赖安装指南',
+    link: decodeURI(location.href),
+    desc: '1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>
