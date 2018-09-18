@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-09-13T20:30:18&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-13T20:30:18&#43;08:00" />
-<meta itemprop="wordCount" content="1929">
+<meta itemprop="wordCount" content="1986">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1929 字 </span>
+        <span class="more-meta"> 约 1986 字 </span>
         <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -174,12 +174,12 @@
 <li><a href="#3-安装kubeadm">3. 安装kubeadm</a></li>
 <li><a href="#4-初始化master">4. 初始化master</a>
 <ul>
-<li><a href="#选择pod网络插件">选择pod网络插件</a></li>
-<li><a href="#初始化">初始化</a></li>
-<li><a href="#安装pod网络">安装pod网络</a></li>
+<li><a href="#4-1-选择pod网络插件">4.1 选择pod网络插件</a></li>
+<li><a href="#4-2-初始化">4.2 初始化</a></li>
+<li><a href="#4-3-安装pod网络">4.3 安装pod网络</a></li>
 </ul></li>
-<li><a href="#master隔离">Master隔离</a></li>
-<li><a href="#结果">结果</a></li>
+<li><a href="#5-master隔离">5. Master隔离</a></li>
+<li><a href="#6-结果">6. 结果</a></li>
 </ul>
 </nav>
   </div>
@@ -300,6 +300,10 @@ Cgroup Driver: cgroupfs
 
 <p>如果一致，不需要处理。上面的情况不一样，kubelet是<code>systemd</code>，docker是<code>cgroupfs</code>。</p>
 
+<blockquote>
+<p>如果不一致，你可能会碰到类似的错误&rdquo;misconfiguration: kubelet cgroup driver: &ldquo;systemd&rdquo; is different from docker cgroup driver: &ldquo;cgroupfs&rdquo;</p>
+</blockquote>
+
 <p>以docker为准，修改kubelet配置文件</p>
 
 <pre><code>&gt; vim /var/lib/kubelet/kubeadm-flags.env
@@ -314,13 +318,13 @@ systemctl restart kubelet
 
 <h1 id="4-初始化master">4. 初始化master</h1>
 
-<h2 id="选择pod网络插件">选择pod网络插件</h2>
+<h2 id="4-1-选择pod网络插件">4.1 选择pod网络插件</h2>
 
 <p>源头来自：<a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/#pod-network">官网参考</a></p>
 
 <p>这里只是选择，还不需要安装，插件的不同参数<code>--pod-network-cidr</code>会有不同的值，在<code>kubeadm init</code>时有用，我这里选了<code>flannel</code>。</p>
 
-<h2 id="初始化">初始化</h2>
+<h2 id="4-2-初始化">4.2 初始化</h2>
 
 <pre><code># 指定版本，使用flannel作为pod网络
 kubeadm init --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.11.0
@@ -404,7 +408,7 @@ kubeadm join 172.16.224.34:6443 --token lc8imt.grx159aia7115ngk --discovery-toke
 <p>注意：<code>kubeadm join</code>语句忘记了也没关系，通过命令可查看，<code>kubeadm token create --print-join-command</code></p>
 </blockquote>
 
-<h2 id="安装pod网络">安装pod网络</h2>
+<h2 id="4-3-安装pod网络">4.3 安装pod网络</h2>
 
 <p>我选了<code>flannel</code></p>
 
@@ -412,7 +416,7 @@ kubeadm join 172.16.224.34:6443 --token lc8imt.grx159aia7115ngk --discovery-toke
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Documentation/kube-flannel.yml
 </code></pre>
 
-<h1 id="master隔离">Master隔离</h1>
+<h1 id="5-master隔离">5. Master隔离</h1>
 
 <p>默认情况下，出于安全原因，是不允许在master上调度pods。如果你想在master上调度pods，譬如用于研发的单主机k8s。你可以运行：</p>
 
@@ -433,7 +437,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Docume
 
 <p>节点名称可以通过<code>kubectl get nodes</code>查看。</p>
 
-<h1 id="结果">结果</h1>
+<h1 id="6-结果">6. 结果</h1>
 
 <p>完成上面的步骤，等待一会（下载k8s的镜像），理论上可以初始化成功。</p>
 
