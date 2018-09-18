@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-09-13T20:30:18&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-13T20:30:18&#43;08:00" />
-<meta itemprop="wordCount" content="1702">
+<meta itemprop="wordCount" content="1929">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1702 字 </span>
+        <span class="more-meta"> 约 1929 字 </span>
         <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -217,11 +217,21 @@
 
 <h1 id="3-安装kubeadm">3. 安装kubeadm</h1>
 
-<p>源头来自：<a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/">官网参考</a>，下面是我实践后的简化步骤。</p>
+<p>官网参考：<a href="https://kubernetes.io/docs/setup/independent/install-kubeadm/">安装kubeadm</a> 和 <a href="https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/">使用kubeadm创建master集群</a>，下面是我实践后的简化步骤。</p>
 
 <p><strong>1. 前面有几步检查系统情况（细节查上面链接）</strong></p>
 
 <p><strong>2. 安装docker 并启动</strong></p>
+
+<blockquote>
+<p>安装docker千万不要用k8s文档上的方式！！</p>
+
+<p>那种方式装的是<code>docker</code>（很老的）！！</p>
+
+<p>现在都是装<code>docker-ce</code>！！</p>
+
+<p>参考下面给的链接！！</p>
+</blockquote>
 
 <ul>
 <li><a href="https://docs.docker.com/install/linux/docker-ce/centos/">官方参考传送门</a></li>
@@ -266,24 +276,41 @@ yum install -y kubelet kubeadm kubectl
 systemctl enable kubelet &amp;&amp; systemctl start kubelet
 </code></pre>
 
-<hr />
-
 <blockquote>
 <p>注意：这里kubelet启动不起来是正常的（不信你执行journalctl -xeu kubelet看看），当kubeadm init后就会OK</p>
 </blockquote>
 
-<hr />
+<p><strong>4. kubelet配置cgroup driver</strong></p>
 
 <blockquote>
-<p>注意：这比对cgruop（细节查上面链接），其实这步可以忽略，在k8s v1.11.0 Release Notes <a href="https://kubernetes.io/docs/imported/release/notes/">https://kubernetes.io/docs/imported/release/notes/</a> 里有描述到（等有新版本的时候，这个链接可能就查不到此信息了）</p>
-
-<pre><code>kubeadm now detects the Docker cgroup driver and starts the kubelet with the matching 
-driver. This eliminates a common error experienced by new users in when the Docker 
-cgroup driver is not the same as the one set for the kubelet due to different Linux 
-distributions setting different cgroup drivers for Docker, making it hard to start 
-the kubelet properly.
-</code></pre>
+<p>目的：kubelet和docker的cgroup driver一致</p>
 </blockquote>
+
+<p>查看kubelet使用的cgroup driver，默认是使用<code>systemd</code>（起码我现在的版本是）</p>
+
+<pre><code>&gt; cat /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS=--cgroup-driver=systemd ....
+</code></pre>
+
+<p>查看docker的cgroup driver</p>
+
+<pre><code>&gt; docker info | grep Cgroup
+Cgroup Driver: cgroupfs
+</code></pre>
+
+<p>如果一致，不需要处理。上面的情况不一样，kubelet是<code>systemd</code>，docker是<code>cgroupfs</code>。</p>
+
+<p>以docker为准，修改kubelet配置文件</p>
+
+<pre><code>&gt; vim /var/lib/kubelet/kubeadm-flags.env
+KUBELET_KUBEADM_ARGS=--cgroup-driver=cgroupfs ....
+</code></pre>
+
+<p>重启生效</p>
+
+<pre><code>systemctl daemon-reload
+systemctl restart kubelet
+</code></pre>
 
 <h1 id="4-初始化master">4. 初始化master</h1>
 
@@ -398,6 +425,13 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/v0.10.0/Docume
 </code></pre>
 
 <p>如果你不执行上面那个命令，对于单主机的情况，你会发现你的pods会一直出于<code>Pending</code>状态</p>
+
+<p>如果你后面想取消了，通过以下命令</p>
+
+<pre><code>kubectl taint nodes {your-master-node-name} node-role.kubernetes.io/master=:NoSchedule
+</code></pre>
+
+<p>节点名称可以通过<code>kubectl get nodes</code>查看。</p>
 
 <h1 id="结果">结果</h1>
 
