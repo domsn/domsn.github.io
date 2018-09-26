@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 14 Sep 2018 02:30:46 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 25 Sep 2018 22:11:20 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结</title>
+      <link>http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</link>
+      <pubDate>Tue, 25 Sep 2018 22:11:20 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</guid>
+      <description>1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，</description>
+    </item>
     
     <item>
       <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</title>

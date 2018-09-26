@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Node - xifan - a blog</title>
+  <title>【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结 - xifan - a blog</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -17,7 +17,7 @@
 
 
 <meta name="author" content="xifan" />
-  <meta name="description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞" />
+  <meta name="description" content="1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，" />
 
   <meta name="keywords" content="xifan" />
 
@@ -29,7 +29,7 @@
 <meta name="generator" content="Hugo 0.46" />
 
 
-<link rel="canonical" href="http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/" />
+<link rel="canonical" href="http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -49,20 +49,16 @@
 
 
 
-<meta property="og:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node" />
-<meta property="og:description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞" />
+<meta property="og:title" content="【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结" />
+<meta property="og:description" content="1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/" />
+<meta property="og:url" content="http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/" />
 
 
 
-<meta property="article:published_time" content="2018-09-14T02:30:46&#43;08:00"/>
+<meta property="article:published_time" content="2018-09-25T22:11:20&#43;08:00"/>
 
-<meta property="article:modified_time" content="2018-09-14T02:30:46&#43;08:00"/>
-
-
-
-
+<meta property="article:modified_time" content="2018-09-25T22:11:20&#43;08:00"/>
 
 
 
@@ -70,20 +66,24 @@
 
 
 
-<meta itemprop="name" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node">
-<meta itemprop="description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞">
-
-
-<meta itemprop="datePublished" content="2018-09-14T02:30:46&#43;08:00" />
-<meta itemprop="dateModified" content="2018-09-14T02:30:46&#43;08:00" />
-<meta itemprop="wordCount" content="1025">
 
 
 
-<meta itemprop="keywords" content="DevOps,Kubernetes,kubeadm,k8s," />
+
+<meta itemprop="name" content="【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结">
+<meta itemprop="description" content="1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，">
+
+
+<meta itemprop="datePublished" content="2018-09-25T22:11:20&#43;08:00" />
+<meta itemprop="dateModified" content="2018-09-25T22:11:20&#43;08:00" />
+<meta itemprop="wordCount" content="1400">
+
+
+
+<meta itemprop="keywords" content="DevOps,Kubernetes,k8s,笔记," />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="在CentOS7中通过kubeadm安装Kubernetes(k8s) Node"/>
-<meta name="twitter:description" content="Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞"/>
+<meta name="twitter:title" content="【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结"/>
+<meta name="twitter:description" content="1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -146,16 +146,16 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</h1>
+      <h1 class="post-title">【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2018-09-14 </span>
+        <span class="post-time"> 2018-09-25 </span>
         <div class="post-category">
             
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1025 字 </span>
+        <span class="more-meta"> 约 1400 字 </span>
         <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -171,10 +171,10 @@
 <ul>
 <li><a href="#1-故事背景">1. 故事背景</a></li>
 <li><a href="#2-提前准备">2. 提前准备</a></li>
-<li><a href="#3-安装kubeadm">3. 安装kubeadm</a></li>
-<li><a href="#4-准备k8s的镜像">4. 准备k8s的镜像</a></li>
-<li><a href="#加入master">加入master</a></li>
-<li><a href="#常见问题">常见问题</a></li>
+<li><a href="#3-taints-and-tolerations">3. Taints and Tolerations</a></li>
+<li><a href="#4-nodeselector">4. NodeSelector</a></li>
+<li><a href="#5-总结">5. 总结</a></li>
+<li><a href="#6-题外话">6. 题外话</a></li>
 </ul>
 </nav>
   </div>
@@ -187,134 +187,106 @@
     <div class="post-content">
       
 
-<blockquote>
-<p>Node安装与Master安装会相对简单，会单独说明</p>
-</blockquote>
-
 <h1 id="1-故事背景">1. 故事背景</h1>
 
-<blockquote>
-<p>如果你存下以下情况或者需求，满足一个就可以往下读</p>
-</blockquote>
+<p>目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，我有两个选择：</p>
 
 <ul>
-<li>不想玩单机Master了</li>
-<li>囊中羞涩</li>
-<li>穷</li>
-<li>以上均是</li>
+<li><p>建立两个集群，把生产和测试分离</p></li>
+
+<li><p>同一个集群，但把测试的服务调度到指定的节点上。</p></li>
 </ul>
+
+<p>基于成本，我选择了第二个方案。</p>
 
 <h1 id="2-提前准备">2. 提前准备</h1>
 
 <ul>
-<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
-<li>拥有访问<code>Google</code>的能力，如果你有科学上网的能力，应用到<code>CentOS7</code>可以<a href="https://xifan.me/post/k8s-prepare-you-need-a-chair/">参考</a></li>
-<li>拥有<code>Kubernetes Master</code>，如果没有可<a href="https://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/">参考</a></li>
-<li>本次安装的Kubernetes版本是<code>1.11.x</code></li>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统</li>
+<li>拥有<code>Kubernetes集群</code></li>
 </ul>
 
-<h1 id="3-安装kubeadm">3. 安装kubeadm</h1>
-
-<p>这步和安装Master基本一致，其中第四部<strong>kubelet配置cgroup driver</strong>不需要处理。</p>
+<h1 id="3-taints-and-tolerations">3. Taints and Tolerations</h1>
 
 <blockquote>
-<p>注意：kubectl可以不用装，管理k8s基本上在Master机器上就可以了</p>
+<p><a href="https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/">官方文档参考</a></p>
 </blockquote>
 
-<h1 id="4-准备k8s的镜像">4. 准备k8s的镜像</h1>
+<p>k8s通过<code>Taints/Tolerations</code>机制，可以让那些<strong>心胸宽广（容忍）</strong>的Pod才可以<strong>接受（调度到）</strong>这个有<strong>缺陷（瑕疵）</strong>的节点上。</p>
+
+<p>当<strong>Node(节点）被打上Taint（瑕疵）</strong>后，因为Pod追求“完美”，<strong>正常的Pod是不会被调度至有瑕疵的节点</strong>（Master节点就是利用了这个特性）。如果Pod比较大度，<strong>可以Toleration（容忍）这些Taint（瑕疵）</strong>，那么是可以调度到这个节点的。</p>
+
+<p>根据背景，我需要在测试节点上，打上Taint（瑕疵）：</p>
+
+<pre><code class="language-bash"># 简易语法说明，详细看官方文档，NoSchedule是effect的一种
+kubectl taint nodes {node-name} {key}={value}:NoSchedule
+# 我的实践，test=true表达这个节点是测试环境的节点
+kubectl taint nodes k8s-test test=true:NoSchedule
+</code></pre>
+
+<p>执行之后，不会有新的Pod调度至此，不过原来就在此节点的Pod不会被驱逐。</p>
+
+<p>“瑕疵”有了，测试环境的Pod也需要“容忍”TA才可以调度至此：</p>
+
+<pre><code class="language-bash"># 因为我用的Deployment，我以此为例，如果你直接用Pod，也是一样的
+# 在节点spec.template.spec下，新增tolerations
+tolerations:
+  - key: &quot;test&quot;
+    operator: &quot;Exists&quot;
+    effect: &quot;NoSchedule&quot;
+</code></pre>
+
+<p>上面的例子表达可以容忍key为&rdquo;test&rdquo;（只需要存在即可，不需要判断value），并且effect为&rdquo;NoSchedule&rdquo;的节点。</p>
+
+<p>至此，我的测试Pod便可以调度至这个有瑕疵的节点上了。</p>
+
+<h1 id="4-nodeselector">4. NodeSelector</h1>
 
 <blockquote>
-<p>注意：如果你可以顺利访问google，可以忽略！如果不能，请看<code>提前准备</code>的参考</p>
+<p><a href="https://kubernetes.io/docs/concepts/configuration/assign-pod-node/">官方参考文档</a></p>
 </blockquote>
 
-<p>因为装master的时候，相关的k8s镜像已经下过一遍，所以为了版本保持一致，最好先下载好，在master机器上通过<code>docker images</code>查看。</p>
+<p>上一节完成后，看起来已经完成我的需求了，实际上并没有。上一节完成的需求仅仅是测试Pod可以在测试节点上调度，但测试Pod并非100%调度至测试节点上。（我虽然容忍你，但我不一定选你）</p>
 
-<pre><code># master的版本
-docker pull k8s.gcr.io/kube-apiserver-amd64:v1.11.0
-docker pull k8s.gcr.io/kube-controller-manager-amd64:v1.11.0
-docker pull k8s.gcr.io/kube-scheduler-amd64:v1.11.0
-docker pull k8s.gcr.io/kube-proxy-amd64:v1.11.0
-docker pull k8s.gcr.io/coredns:1.1.3
-docker pull k8s.gcr.io/etcd-amd64:3.2.18
-docker pull k8s.gcr.io/pause-amd64:3.1
-docker pull k8s.gcr.io/pause:3.1
+<p>为了完成目的，我们可以这样做：</p>
+
+<pre><code class="language-bash"># 首先给节点打标签label（同样表示测试环境）
+kubectl label nodes k8s-test test=true
+
+# 在Deployment描述文件里，节点spec.template.spec下，新增nodeSelector
+nodeSelector:
+  test: &quot;true&quot;
 </code></pre>
 
-<blockquote>
-<p>等镜像pull完，你可以把docker的科学上网去掉，你已经基本上不需要他了</p>
-</blockquote>
+<p>通过NodeSelector让Pod选择符合条件的节点，就可以满足我的需求了。</p>
 
-<h1 id="加入master">加入master</h1>
+<h1 id="5-总结">5. 总结</h1>
 
-<p>在master初始化完毕后，会输出一段类似于以下的命令</p>
+<ul>
+<li>首先，节点通过新增<code>Taint</code>（瑕疵）来拒绝Pod调度</li>
+<li>其次，Pod增加<code>Toleration</code>表示容忍这个瑕疵，拥有了调度至此的条件</li>
+<li>最后，Pod通过<code>nodeSelector</code>，告诉k8s一生只爱TA，不愿意调度去其他节点</li>
+</ul>
 
-<pre><code>kubeadm join 172.16.224.34:6443 --token fweifx.fs7f8w3f89sfhf --discovery-token-ca-cert-hash sha256:2174a53f2d7c7f59ee3d425e2da069a70c251e2192b3375e1361dcc50f46a066
+<p>🙂联姻成功，恭喜💐</p>
+
+<h1 id="6-题外话">6. 题外话</h1>
+
+<p>在Taint的实践上，我遇过一个问题。上面的实践中，<code>effect</code>使用了<code>NoSchedule</code>，我也说明了，原来在此节点上的Pod不会被驱逐。</p>
+
+<p>在我一开始实践时，使用的是<code>NoExecute</code>，这个<code>effect</code>则会驱逐不该在这里生存的Pod。</p>
+
+<p>对于业务Pod没关系，而那些系统类、工具辅助类的Pod则有影响，譬如：flannel、traefik等，会导致网络不正常，还有些收集日志的Pod等等，他们存在的形式大多是daemonset。</p>
+
+<p>最后我把Taint删掉，等Daemonset类的Pod同步完成后，再改为<code>NoSchedule</code>，就一切正常了。</p>
+
+<p>删除的例子：</p>
+
+<pre><code class="language-bash"># 简易说明，注意后面的减号
+kubectl taint nodes {node-name} {key}:{effect}-
+# 实例
+kubectl taint nodes k8s-test test:NoExecute-
 </code></pre>
-
-<hr />
-
-<p>如果你忘记了，没关系，下面这个命令会告诉你</p>
-
-<pre><code># 注意：此命令在Master机器上执行，把输出结果在Node机器上执行
-kubeadm token create --print-join-command
-</code></pre>
-
-<hr />
-
-<p>如果你记录下来了，那可以直接在Node机器上执行，其中token是24小时有效，如果已经过期，可以使用以下命令获取。</p>
-
-<pre><code># 注意：此命令在Master机器上执行
-# 创建token
-&gt; kubeadm token create
-&gt; kubeadm token list
-TOKEN                     TTL       EXPIRES                     USAGES                   DESCRIPTION   EXTRA GROUPS
-lc8imt.grx159aia7115ngk   2h        2018-09-12T20:18:49+08:00   authentication,signing   &lt;none&gt;        system:bootstrappers:kubeadm:default-node-token
-
-# lc8imt.grx159aia7115ngk  就是你需要的token
-</code></pre>
-
-<p>所以最终的命令，替换如下</p>
-
-<pre><code>kubeadm join 172.16.224.34:6443 --token lc8imt.grx159aia7115ngk --discovery-token-ca-cert-hash sha256:2174a53f2d7c7f59ee3d425e2da069a70c251e2192b3375e1361dcc50f46a066
-</code></pre>
-
-<hr />
-
-<p>顺利的话，会告诉你加入成功，这个时候你在Master机器通过命令<code>kubectl get nodes</code>可以看到多了一个节点。
-一开始可能是<code>not ready</code>状态，有一些pod是需要同步到新节点上的，同步并启动完成后，就会变成<code>ready</code>状态。</p>
-
-<h1 id="常见问题">常见问题</h1>
-
-<blockquote>
-<p><strong>一直处于not ready状态</strong></p>
-</blockquote>
-
-<p>你需要使用命令<code>journalctl -xeu kubelet</code>看看日志，具体问题具体分析</p>
-
-<blockquote>
-<p><strong>[ERROR FileContent&ndash;proc-sys-net-bridge-bridge-nf-call-iptables]: /proc/sys/net/bridge/bridge-nf-call-iptables contents are not set to 1</strong></p>
-</blockquote>
-
-<p>当<code>kubeadm join</code>时，发生类似上述的错误。</p>
-
-<p>编辑文件/etc/sysctl.conf，新增或修改如下内容</p>
-
-<pre><code>net.bridge.bridge-nf-call-iptables = 1
-</code></pre>
-
-<p>执行如下命令生效</p>
-
-<pre><code>sudo sysctl -p
-</code></pre>
-
-<blockquote>
-<p><strong>搞乱了，想重新来</strong></p>
-</blockquote>
-
-<ol>
-<li>在master上删除node，<code>kubectl delete node {NODE_NAME}</code></li>
-<li>在worker上重置，<code>kubeadm reset -f</code></li>
-</ol>
 
     </div>
 
@@ -326,7 +298,7 @@ lc8imt.grx159aia7115ngk   2h        2018-09-12T20:18:49+08:00   authentication,s
   </p>
   <p class="copyright-item">
     <span class="item-title">上次更新</span>
-    <span class="item-content">2018-09-14</span>
+    <span class="item-content">2018-09-25</span>
   </p>
   
   
@@ -359,23 +331,18 @@ lc8imt.grx159aia7115ngk   2h        2018-09-12T20:18:49+08:00   authentication,s
           
           <a href="/tags/kubernetes/">Kubernetes</a>
           
-          <a href="/tags/kubeadm/">kubeadm</a>
-          
           <a href="/tags/k8s/">k8s</a>
+          
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/gitlab-runner-deployment-app-dependency-installation-guide/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">【笔记】Gitlab-runner之部署应用软件依赖安装指南</span>
-            <span class="prev-text nav-mobile">上一篇</span>
-          </a>
         
-          <a class="next" href="/post/how-to-pull-private-docker-images-in-kubernetes/">
-            <span class="next-text nav-default">在Kubernetes(k8s)里如何拉取私有Docker镜像？</span>
+          <a class="next" href="/post/install-helm-and-alicloud-logtail/">
+            <span class="next-text nav-default">【笔记】安装Helm和Alicloud Logtail</span>
             <span class="next-text nav-mobile">下一篇</span>
             <i class="iconfont icon-right"></i>
           </a>
@@ -389,10 +356,10 @@ lc8imt.grx159aia7115ngk   2h        2018-09-12T20:18:49+08:00   authentication,s
     <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
   <script type="text/javascript">
   const gitment = new Gitment({
-    id: '2018-09-14 02:30:46 \x2b0800 CST',
-    title: '在CentOS7中通过kubeadm安装Kubernetes(k8s) Node',
+    id: '2018-09-25 22:11:20 \x2b0800 CST',
+    title: '【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结',
     link: decodeURI(location.href),
-    desc: 'Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞',
+    desc: '1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，',
     owner: 'domsn',
     repo: 'comment',
     oauth: {
