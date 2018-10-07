@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？ - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？" />
+<meta property="og:description" content="1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/" />
+
+
+
+<meta property="article:published_time" content="2018-10-01T22:38:22&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-10-01T22:38:22&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？">
+<meta itemprop="description" content="1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr">
+
+
+<meta itemprop="datePublished" content="2018-10-01T22:38:22&#43;08:00" />
+<meta itemprop="dateModified" content="2018-10-01T22:38:22&#43;08:00" />
+<meta itemprop="wordCount" content="1904">
+
+
+
+<meta itemprop="keywords" content="Spring Cloud,Kubernetes,本地调试,DevOps,笔记,k8s," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？"/>
+<meta name="twitter:description" content="1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-10-01 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 1904 字 </span>
+        <span class="more-meta"> 预计阅读 4 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-解决方案概述">3. 解决方案概述</a></li>
+<li><a href="#4-dnsmasq">4. dnsmasq</a></li>
+<li><a href="#5-nginx">5. nginx</a></li>
+<li><a href="#6-总结">6. 总结</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<p>随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spring Cloud。经过一系列的折腾，我们把Spring Cloud部署在k8s集群里（到目前为止，我都觉得这两个玩意功能有点重合，虽然领域不一样），这期间遇到几个关键的问题。</p>
+
+<p><strong>&gt; 首先，对于Spring Cloud，部署需要选择Statefulset，因为这样可以有稳定的网络标识（服务名）</strong></p>
+
+<p>Eureka客户端会根据服务名，获取对应<code>Endpoints</code>，缓存在本地，在调用时，会从<code>Endpoints</code>中取一个进行调用。如问题所描述，这个<code>Endpoint</code>在k8s集群里通过DNS是认识的，但本地并不认识。</p>
+
+<p><strong>&gt; 研发怎么调试？难道注册中心、配置中心、所有的微服务都要本地启动？</strong></p>
+
+<p>之所以采用微服务的架构，肯定是因为规模上来了，拆分出来的微服务绝不会少。而微服务整个架构内容实在太多，包括注册中心、配置中心、网关、各种业务微服务。如果本地调试时，全部在本地启动，是不现实的。为了可以本地调试，我们大致需要解决如下问题：</p>
+
+<p><strong>1. k8s集群里，pod的网络都是内网的</strong></p>
+
+<p>可以使用<code>Ingress</code>或者<code>Service NodePort</code>模式，让开发环境在本地也可以访问到，我这里使用<code>ingress</code>，规则是<code>{service_name}.foo.com</code>，如：<code>base.foo.com</code></p>
+
+<p><strong>2. 需要把上面提到的稳定的网络标识在本地也可以识别</strong></p>
+
+<blockquote>
+<p>那些稳定的网络标识，只存在于k8s集群里（dns），在研发本地是不存在的</p>
+</blockquote>
+
+<pre><code># 按照我的需求，需要把
+http://{pod_name}.{svc_name}.{namespace}.svc.cluster.local
+# 重写至
+{service_name}.cloud.foo.com
+
+# 实例
+http://java-ms-base-test-0.java-ms-base-test.java-ms.svc.cluster.local
+👇
+http://base.cloud.foo.com
+
+# 其中foo是顶级域名
+# base是微服务名，从{svc_name}中提取java-ms-{service_name}-test
+</code></pre>
+
+<p><strong>&gt; 最后，如果你也有类似的问题，不妨可以看看我的解决方案</strong></p>
+
+<blockquote>
+<p>部署Spring Cloud，为什么使用Statefulset，可自行了解一下</p>
+</blockquote>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>MacOS High Sierra(version 10.13.3)</code>系统</li>
+</ul>
+
+<h1 id="3-解决方案概述">3. 解决方案概述</h1>
+
+<ol>
+<li><p>为了<code>http://{pod_name}.{svc_name}.{namespace}.svc.cluster.local</code>这类有规则的域名可以在本地识别，靠<code>hosts</code>文件是很麻烦的（不支持通配符，需要一个个配），我们需要本地dns，所以非<code>dnsmasq</code>莫属</p></li>
+
+<li><p>域名识别出来后，我们需要反向代理或者重写，毫无疑问，用<code>nginx</code></p></li>
+</ol>
+
+<h1 id="4-dnsmasq">4. dnsmasq</h1>
+
+<p><strong>1. 安装</strong></p>
+
+<pre><code>brew install dnsmasq
+</code></pre>
+
+<p><strong>2. 配置 dnsmasq.conf</strong></p>
+
+<pre><code># 逻辑：把域名后缀svc.cluster.local均由本地处理
+echo 'listen-address=127.0.0.1' &gt;&gt; $(brew --prefix)/etc/dnsmasq.conf
+echo 'address=/svc.cluster.local/127.0.0.1' &gt;&gt; $(brew --prefix)/etc/dnsmasq.conf
+echo 'strict-order' &gt;&gt; $(brew --prefix)/etc/dnsmasq.conf
+</code></pre>
+
+<p><strong>3. 配置 /etc/resolver/local</strong></p>
+
+<pre><code># 因为域名最末端的后缀是local，所以文件命名为local
+sudo mkdir -v /etc/resolver
+sudo bash -c 'echo &quot;nameserver 127.0.0.1&quot; &gt; /etc/resolver/local'
+</code></pre>
+
+<p><strong>4. 启动dnsmasq</strong></p>
+
+<pre><code>sudo brew services start dnsmasq
+</code></pre>
+
+<p><strong>5. 加入开机自启动</strong></p>
+
+<pre><code>sudo cp -v $(brew --prefix dnsmasq)/homebrew.mxcl.dnsmasq.plist /Library/LaunchDaemons
+sudo launchctl load -w /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+</code></pre>
+
+<h1 id="5-nginx">5. nginx</h1>
+
+<p><strong>1. 安装</strong></p>
+
+<pre><code>brew install nginx
+</code></pre>
+
+<p><strong>2. 配置</strong></p>
+
+<pre><code class="language-bash"># vim /usr/local/etc/nginx/nginx.conf
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    sendfile        on;
+    keepalive_timeout  65;
+
+    # 必须指定
+    resolver 127.0.0.1;
+
+    server {
+        # 把所有微服务的端口都加上
+        listen       8880;
+        listen       8881;
+        listen       8882;
+        listen       8883;
+        listen       8884;
+        listen       8885;
+        listen       8886;
+        listen       8887;
+        listen       8888;
+        listen       8889;
+        server_name  *.svc.cluster.local;
+
+        if ($host ~* (.*)\.eureka-(.*)-test\.java-ms\.svc\.cluster\.local$) {
+            set $eureka_service_name $2;
+        }
+
+        # 从{svc_name}中找到微服务名称
+        if ($host ~* (.*)\.java-ms-(.*)-test\.java-ms\.svc\.cluster\.local$) {
+            set $eureka_service_name $2;
+        }
+
+        # 反向代理至微服务域名
+        location / {
+            proxy_pass http://$eureka_service_name.cloud.foo.com$request_uri;
+        }
+
+    }
+}
+</code></pre>
+
+<p><strong>3. 刷新配置</strong></p>
+
+<pre><code>sudo nginx -s reload
+</code></pre>
+
+<h1 id="6-总结">6. 总结</h1>
+
+<p>现在，你可以调试某一个微服务了，而不需要全部都在本地启动。</p>
+
+<blockquote>
+<p>建议：这种操作只在测试环境进行，生产环境不要直接暴露微服务的地址，要通过网关</p>
+</blockquote>
+
+<p>虽然测试成功了，但通过Spring Cloud + k8s 并不是最佳方式（个人觉得），我因为一个原因一直感觉很难受。</p>
+
+<p>在没有使用Spring Cloud前，k8s里stateless应用（deployment）的滚动更新是可以做到服务不中断（哪怕只有一个副本），因为TA是先启动一个新的，启动成功后，再替换掉旧的。</p>
+
+<p>为了使用Spring Cloud，不能用deployment了，得用statefuelset（因为需要稳定的网络标识），TA滚动更新的方式是先干掉旧的，然后再启动一个新的（可能是因为网络标识唯一，没办法像deployment那样做）</p>
+
+<p>尽管如此，其实在k8s集群里，这两种部署方式都是可以做到服务不中断的（不大了来两个副本），问题在于Eureka Client是把Enpoints缓存在本地，隔一段时间再同步一次新的（譬如：30秒），在更新应用的时候，其中一个网络标识会被干掉，本地命中就这样会服务会出现中断。(k8s里不会，因为service同步移除掉不可用的pod）。</p>
+
+<p>想了很久，找了很久，在这个方案上没有很好的办法，后面不小心发现了<code>Istio(Service Mesh)</code>这个东东！经过肤浅的了解后，我决定尝试一下，成功的话，就可以抛弃Spring Cloud了，哈哈哈哈！！！</p>
+
+<p>最后Spring Cloud作为备选方案，这篇笔记仅仅为了记录下其过程。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-10-01</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/spring-cloud/">Spring Cloud</a>
+          
+          <a href="/tags/kubernetes/">Kubernetes</a>
+          
+          <a href="/tags/%E6%9C%AC%E5%9C%B0%E8%B0%83%E8%AF%95/">本地调试</a>
+          
+          <a href="/tags/devops/">DevOps</a>
+          
+          <a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>
+          
+          <a href="/tags/k8s/">k8s</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/notes-of-k8s-taint-and-tolerations-and-node-selector/">
+            <span class="next-text nav-default">【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-10-01 22:38:22 \x2b0800 CST',
+    title: '【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？',
+    link: decodeURI(location.href),
+    desc: '1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125857878-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>
