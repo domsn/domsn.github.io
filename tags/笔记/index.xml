@@ -6,10 +6,19 @@
     <description>Recent content in 笔记 on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 25 Sep 2018 22:11:20 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 06 Oct 2018 22:38:22 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？</title>
+      <link>http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</link>
+      <pubDate>Sat, 06 Oct 2018 22:38:22 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</guid>
+      <description>1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr</description>
+    </item>
     
     <item>
       <title>【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结</title>
