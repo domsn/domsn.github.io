@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-10-06T22:38:22&#43;08:00" />
 <meta itemprop="dateModified" content="2018-10-06T22:38:22&#43;08:00" />
-<meta itemprop="wordCount" content="1904">
+<meta itemprop="wordCount" content="1905">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1904 字 </span>
+        <span class="more-meta"> 约 1905 字 </span>
         <span class="more-meta"> 预计阅读 4 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -349,7 +349,7 @@ http {
 
 <p>虽然测试成功了，但通过Spring Cloud + k8s 并不是最佳方式（个人觉得），我因为一个原因一直感觉很难受。</p>
 
-<p>在没有使用Spring Cloud前，k8s里stateless应用（deployment）的滚动更新是可以做到服务不中断（哪怕只有一个副本），因为TA是先启动一个新的，启动成功后，再替换掉旧的。</p>
+<p>在没有使用Spring Cloud前，k8s里Serverless应用（deployment）的滚动更新是可以做到服务不中断（哪怕只有一个副本），因为TA是先启动一个新的，启动成功后，再替换掉旧的。</p>
 
 <p>为了使用Spring Cloud，不能用deployment了，得用statefuelset（因为需要稳定的网络标识），TA滚动更新的方式是先干掉旧的，然后再启动一个新的（可能是因为网络标识唯一，没办法像deployment那样做）</p>
 
