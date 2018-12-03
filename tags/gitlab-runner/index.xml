@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Gitlab-Runner on xifan - a blog</title>
+    <title>Gitlab-runner on xifan - a blog</title>
     <link>http://xifan.me/tags/gitlab-runner/</link>
-    <description>Recent content in Gitlab-Runner on xifan - a blog</description>
+    <description>Recent content in Gitlab-runner on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 29 Aug 2018 14:55:38 +0800</lastBuildDate>

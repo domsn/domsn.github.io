@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Istio - 安装及注意事项 - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/istio-setup/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="Istio - 安装及注意事项" />
+<meta property="og:description" content="1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/istio-setup/" />
+
+
+
+<meta property="article:published_time" content="2018-12-01T10:28:03&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-12-01T10:28:03&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="Istio - 安装及注意事项">
+<meta itemprop="description" content="1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在">
+
+
+<meta itemprop="datePublished" content="2018-12-01T10:28:03&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-01T10:28:03&#43;08:00" />
+<meta itemprop="wordCount" content="907">
+
+
+
+<meta itemprop="keywords" content="Istio,Microservice,微服务,Kuberenetes,安装," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Istio - 安装及注意事项"/>
+<meta name="twitter:description" content="1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Istio - 安装及注意事项</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-01 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 907 字 </span>
+        <span class="more-meta"> 预计阅读 2 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-个人理解">3. 个人理解</a></li>
+<li><a href="#4-安装">4. 安装</a></li>
+<li><a href="#5-注意事项">5. 注意事项</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<p>前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在实践的过程中，和k8s整合不大融洽（Eureka缓存了服务地址，导致k8s在滚动更新应用时，会出现服务停止的现象。这点让我十分不爽），于是在找解决方案的时候，发现了<code>Istio</code>。</p>
+
+<p>简单了解后，这就是我想要的东东啊！😎</p>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
+<li>Kubernetes(k8s)集群</li>
+<li>istio版本<code>1.0.2</code></li>
+</ul>
+
+<h1 id="3-个人理解">3. 个人理解</h1>
+
+<blockquote>
+<p>Istio的定义，能干啥，<a href="https://istio.io/zh/">官网</a>说的很清楚，居然有中文文档👏，这点真的让我很惊喜。</p>
+</blockquote>
+
+<p><strong>🤔为什么这就是我想要东东？</strong></p>
+
+<ul>
+<li>解决我上面的问题</li>
+<li>可以直接抛弃Spring Cloud这个大包袱，只需要SpringBoot足以</li>
+<li>把微服务里较偏向运维侧的工作<code>服务治理</code>解耦了出来，业务研发可以几乎不再关心这部分的内容，这点实在太好了！就好像之前的<code>前后端分离</code>一样，较好的划清了工作边界，让专业的人做专业的事！这点真的非常振奋人心！👏</li>
+</ul>
+
+<h1 id="4-安装">4. 安装</h1>
+
+<p>官网说的挺清楚，我这里用<code>helm</code>进行安装</p>
+
+<p><strong>下载</strong></p>
+
+<pre><code class="language-bash">curl -L https://git.io/getLatestIstio | sh -
+</code></pre>
+
+<p><strong>安装</strong></p>
+
+<p>这里针对自建K8S集群的安装，如果公有云（阿里云），一般有一键安装，也支持个性化配置。</p>
+
+<pre><code class="language-bash"># 指定gateway为NodePort，因为测试环境没有LoadBalancer
+# 同时安装tracing相关组件（其实就是jaeger）,建议在这里一起安装，不要独立安装jaeger
+cd {your-istio-directory-path} 
+helm install install/kubernetes/helm/istio --name istio --namespace istio-system \
+ --set gateways.istio-ingressgateway.type=NodePort \
+ --set tracing.enabled=true
+</code></pre>
+
+<p>如果你想定制Istio，请查看<a href="https://istio.io/docs/reference/config/installation-options/">个性化配置列表传送门</a></p>
+
+<p><strong>删除</strong></p>
+
+<pre><code class="language-bash">helm delete --purge istio
+cd {your-istio-directory-path}
+# 这步相当重要，在我这个版本存在，其他版本不知道
+# 如果不执行我下面这句命令，在我这个版本重新安装会有问题
+# 应该是删除时，清理不干净
+kubectl delete -f install/kubernetes/helm/istio/templates/crds.yaml -n istio-system
+</code></pre>
+
+<h1 id="5-注意事项">5. 注意事项</h1>
+
+<p><strong>Istio 对 Pod 和服务的要求</strong></p>
+
+<p><a href="https://istio.io/zh/docs/setup/kubernetes/spec-requirements/">官网传送门</a></p>
+
+<p>实践后，我总结如下：</p>
+
+<ul>
+<li>一定要对<code>service</code>进行命名(否则在<code>jaeger</code>无法显示，其他问题未知)，如下命名为<code>http-foo</code>：</li>
+</ul>
+
+<pre><code>kind: Service
+apiVersion: v1
+metadata:
+  name: foo 
+  namespace: bar
+spec:
+  selector:
+    app: bar-foo-production
+  ports:
+  - name: http-foo
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+</code></pre>
+
+<ul>
+<li>一个pod最好只关联一个service</li>
+<li>目前Pod的标签只带了<code>app</code>，没带上<code>version</code>。暂未发现什么问题，因为我的版本会体现在镜像上，所以暂时未使用。</li>
+</ul>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-12-01</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/istio/">Istio</a>
+          
+          <a href="/tags/microservice/">Microservice</a>
+          
+          <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+          
+          <a href="/tags/kuberenetes/">Kuberenetes</a>
+          
+          <a href="/tags/%E5%AE%89%E8%A3%85/">安装</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/istio-ingressgateway/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">Istio - Ingressgateway实践</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/">
+            <span class="next-text nav-default">【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-12-01 10:28:03 \x2b0800 CST',
+    title: 'Istio - 安装及注意事项',
+    link: decodeURI(location.href),
+    desc: '1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125857878-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

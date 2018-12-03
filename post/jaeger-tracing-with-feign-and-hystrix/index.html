@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>为了使用Jaeger，整合Feign和Hystrix的那些事 - xifan - a blog</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="xifan" />
+  <meta name="description" content="1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot &#43; Isti" />
+
+  <meta name="keywords" content="xifan" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.46" />
+
+
+<link rel="canonical" href="http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<link href="/dist/even.min.css?v=3.2.0" rel="stylesheet">
+<link href="/lib/fancybox/jquery.fancybox-3.1.20.min.css" rel="stylesheet">
+
+
+
+
+<meta property="og:title" content="为了使用Jaeger，整合Feign和Hystrix的那些事" />
+<meta property="og:description" content="1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot &#43; Isti" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/" />
+
+
+
+<meta property="article:published_time" content="2018-12-03T15:34:29&#43;08:00"/>
+
+<meta property="article:modified_time" content="2018-12-03T15:34:29&#43;08:00"/>
+
+
+
+
+
+
+
+
+
+
+
+<meta itemprop="name" content="为了使用Jaeger，整合Feign和Hystrix的那些事">
+<meta itemprop="description" content="1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot &#43; Isti">
+
+
+<meta itemprop="datePublished" content="2018-12-03T15:34:29&#43;08:00" />
+<meta itemprop="dateModified" content="2018-12-03T15:34:29&#43;08:00" />
+<meta itemprop="wordCount" content="1475">
+
+
+
+<meta itemprop="keywords" content="Istio,Microservice,微服务,Kuberenetes,Tracing,Feign,Hystrix," />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="为了使用Jaeger，整合Feign和Hystrix的那些事"/>
+<meta name="twitter:description" content="1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot &#43; Isti"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Xifan</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a>
+  </ul>
+</nav>
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Xifan</a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li>
+  </ul>
+</nav>
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">为了使用Jaeger，整合Feign和Hystrix的那些事</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2018-12-03 </span>
+        <div class="post-category">
+            
+              <a href="/categories/devops/"> DevOps </a>
+            
+          </div>
+        <span class="more-meta"> 约 1475 字 </span>
+        <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+<ul>
+<li><a href="#1-故事背景">1. 故事背景</a></li>
+<li><a href="#2-提前准备">2. 提前准备</a></li>
+<li><a href="#3-实践">3. 实践</a>
+<ul>
+<li><a href="#3-1-增加拦截器">3.1 增加拦截器</a></li>
+<li><a href="#3-2-增加feign拦截器">3.2 增加Feign拦截器</a></li>
+<li><a href="#3-3-一阶段测试">3.3 一阶段测试</a></li>
+<li><a href="#3-4-增加hystrix自定义并发策略">3.4 增加Hystrix自定义并发策略</a></li>
+<li><a href="#3-5-二阶段测试">3.5 二阶段测试</a></li>
+</ul></li>
+<li><a href="#4-总结">4. 总结</a></li>
+</ul>
+</nav>
+  </div>
+</div>
+
+    
+    
+
+    
+    <div class="post-content">
+      
+
+<h1 id="1-故事背景">1. 故事背景</h1>
+
+<p>前面有说到过，我们正在进行微服务改造，其中曾经选型<code>Spring Cloud</code>，种种原因放弃了，最后选择了<code>SpringBoot + Istio</code>。</p>
+
+<p>原来在Spring Cloud中拥有的分布式追踪功能，就寄希望于Istio了。但原来在Spring Cloud全家桶中，有一个叫做Feign的家伙，专门用于调用API，我们觉得挺好用，所以保留了他。并且他还和Hystrix（熔断库）集成了，在我们的业务场景里也需要。</p>
+
+<p>使用分布式追踪很简单啊，把对应的Tracing Headers传播下去就好啦！真的是这样吗？！真的！对于Feign和Hystrix还真有点儿不一样！</p>
+
+<h1 id="2-提前准备">2. 提前准备</h1>
+
+<ul>
+<li>本次试验是在<code>CentOS 7.4 64位</code>系统,<code>root</code>用户下进行</li>
+<li>Kubernetes(k8s)集群</li>
+<li>istio版本<code>1.0.2</code></li>
+
+<li><p>使用了Feign和Hystrix的环境，使用了如下版本：</p>
+
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-cloud-starter-feign&lt;/artifactId&gt;
+    &lt;version&gt;1.4.3.RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre></li>
+</ul>
+
+<h1 id="3-实践">3. 实践</h1>
+
+<p>在<a href="https://xifan.me/post/istio-tracing">Istio - 分布式跟踪实践</a>中，提到了集成的方式，我们一步步来。</p>
+
+<h2 id="3-1-增加拦截器">3.1 增加拦截器</h2>
+
+<p>使用拦截器，把所有的Tracing Headers放入ThreadLocal里，代码如下：</p>
+
+<pre><code>public class TracingInterceptor extends HandlerInterceptorAdapter {
+	
+	public final static ThreadLocal&lt;Map&gt; headerThreadLocal = new ThreadLocal();
+
+	private static List&lt;String&gt; tracingHeaderKeys = Arrays.asList(&quot;x-request-id&quot;, &quot;x-b3-traceid&quot;, &quot;x-b3-spanid&quot;, &quot;x-b3-parentspanid&quot;,
+			&quot;x-b3-sampled&quot;, &quot;x-b3-flags&quot;, &quot;x-ot-span-context&quot;);
+
+	@Override
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+        this.handleHeader(request, tracingHeaderKeys);
+        response.setHeader(&quot;traceid&quot;, request.getHeader(&quot;x-b3-traceid&quot;));
+		return true;
+	}
+
+    private void handleHeader(HttpServletRequest request, List&lt;String&gt; tracingHeaderKeys) {
+
+        Map&lt;String, List&gt; tracingHeaders = new HashMap();
+
+	    for(String key: tracingHeaderKeys) {
+	        String val = request.getHeader(key);
+	        if ( null != val ) {
+				tracingHeaders.put(key, Arrays.asList(val));
+			}
+        }
+
+	    if (tracingHeaders.size() &gt; 0) {
+			headerThreadLocal.set(tracingHeaders);
+		}
+    }
+
+}
+</code></pre>
+
+<h2 id="3-2-增加feign拦截器">3.2 增加Feign拦截器</h2>
+
+<p>Feign作为调用API的工具，这里也使用TA的拦截器，把上面的Tracing Headers往下传播，其实就是从ThreadLocal里取出来，代码如下：</p>
+
+<pre><code>@Configuration
+public class FeignInterceptorConfiguration {
+
+    @Bean
+    public RequestInterceptor headerInterceptor() {
+        return new RequestInterceptor() {
+            @Override
+            public void apply(RequestTemplate requestTemplate) {
+                Map&lt;String, Collection&lt;String&gt;&gt; tracingHeaders = TracingInterceptor.headerThreadLocal.get();
+                if (null != tracingHeaders) {
+                    requestTemplate.headers(tracingHeaders);
+                }
+            }
+        };
+    }
+
+}
+</code></pre>
+
+<h2 id="3-3-一阶段测试">3.3 一阶段测试</h2>
+
+<p>兴高采烈的测试，一切完美，在Jaeger可以正常看到所有的调用链，相当顺利！直到有个同事说，好像Hystrix的熔断没生效！</p>
+
+<p>哦，那也没事，配置加上就成！如下：</p>
+
+<pre><code>feign:
+  hystrix:
+    enabled: true
+</code></pre>
+
+<p>But，第一个问题出现了，Tracing好像传递不去了，在Feign拦截器中ThreadLocal取不到相关信息了。</p>
+
+<p>🤔为啥？？</p>
+
+<p>原因在于，Hystrix提供了基于信号量和线程两种隔离模式，默认是线程模式，这就是解释了为什么取不到了，因为Hystrix使用了线程，和请求的主线程不是同一个线程，那是肯定取不到值的。</p>
+
+<p>那该怎么解决？？方法有二：</p>
+
+<ol>
+<li>使用信号量模式（但官方不推荐）</li>
+<li>使用Hystrix的插件模式，添加自定义并发策略</li>
+</ol>
+
+<p>既然第一种方法，官方不推荐，我们尝试第二种。</p>
+
+<h2 id="3-4-增加hystrix自定义并发策略">3.4 增加Hystrix自定义并发策略</h2>
+
+<p>参考官方文档：<a href="https://github.com/Netflix/Hystrix/wiki/Plugins#concurrency-strategy">Concurrency Strategy</a></p>
+
+<p><strong>1. 添加自定义并发策略</strong></p>
+
+<p>代码如下：</p>
+
+<pre><code>public class TracingHystrixConcurrencyStrategy extends HystrixConcurrencyStrategy {
+
+    @Override
+    public &lt;T&gt; Callable&lt;T&gt; wrapCallable(Callable&lt;T&gt; callable) {
+        return new TracingAwareCallable&lt;&gt;(callable, TracingInterceptor.headerThreadLocal.get());
+    }
+
+    static class TracingAwareCallable&lt;T&gt; implements Callable&lt;T&gt; {
+
+        private final Callable&lt;T&gt; delegate;
+        private final Map tracingMap;
+
+        public TracingAwareCallable(Callable&lt;T&gt; callable, Map tracingMap) {
+            this.delegate = callable;
+            this.tracingMap = tracingMap;
+        }
+
+        @Override
+        public T call() throws Exception {
+            try {
+                TracingInterceptor.headerThreadLocal.set(this.tracingMap);
+                return delegate.call();
+            } finally {
+                TracingInterceptor.headerThreadLocal.set(null);
+            }
+        }
+    }
+}
+</code></pre>
+
+<ol>
+<li>实现Callable接口，在构造函数里，增加Tracing信息，然后在call方法里，再把对应的Tracing信息放置于ThreadLocal里（为了在Feign拦截器里可以用一致的方式获取）。</li>
+<li>实现HystrixConcurrencyStrategy类，覆盖方法wrapCallable，实例化刚刚实现的Callable类，把当前的Tracing信息传入。</li>
+</ol>
+
+<p><strong>2. 注册</strong></p>
+
+<p>注册自定义同步策略</p>
+
+<pre><code>@Configuration
+public class HystrixConfiguration {
+
+    @PostConstruct
+    public void init() {
+        HystrixPlugins.getInstance().registerConcurrencyStrategy(new TracingHystrixConcurrencyStrategy());
+    }
+
+}
+</code></pre>
+
+<h2 id="3-5-二阶段测试">3.5 二阶段测试</h2>
+
+<p>Tracing信息终于又正常传递下去了，所以如果需要熔断的人儿，可以尝试这种方法。</p>
+
+<h1 id="4-总结">4. 总结</h1>
+
+<p>总的来说，为了达到分布式追踪，对于代码的入侵性还是很小的，主要都是一些拦截器，并不影响业务代码。</p>
+
+<p>我相信在别的语言上，整合这个功能会比JAVA容易的多。</p>
+
+<p>比起<code>Spring Cloud</code>，TA有个最大的优势，语言无关性，对于以后的扩展性最好，不会那么局限。</p>
+
+    </div>
+
+    
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">文章作者</span>
+    <span class="item-content">xifan</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">上次更新</span>
+    <span class="item-content">2018-12-03</span>
+  </p>
+  
+  
+</div>
+
+    
+    
+<div class="post-reward">
+  <input type="checkbox" name="reward" id="reward" hidden />
+  <label class="reward-button" for="reward">赞赏支持</label>
+  <div class="qr-code">
+    
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/wechatpay.png">
+        <span>微信打赏</span>
+      </label>
+    
+      <label class="qr-code-image" for="reward">
+        <img class="image" src="/pay/alipay.png">
+        <span>支付宝打赏</span>
+      </label>
+  </div>
+</div>
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          
+          <a href="/tags/istio/">Istio</a>
+          
+          <a href="/tags/microservice/">Microservice</a>
+          
+          <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">微服务</a>
+          
+          <a href="/tags/kuberenetes/">Kuberenetes</a>
+          
+          <a href="/tags/tracing/">Tracing</a>
+          
+          <a href="/tags/feign/">Feign</a>
+          
+          <a href="/tags/hystrix/">Hystrix</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/istio-tracing/">
+            <span class="next-text nav-default">Istio - 分布式跟踪实践</span>
+            <span class="next-text nav-mobile">下一篇</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+  <div id="comments-gitment"></div>
+  <link rel="stylesheet" href="/lib/gitment/gitment-0.0.3.min.css">
+    <script src="/lib/gitment/gitment-0.0.3.min.js"></script>
+  <script type="text/javascript">
+  const gitment = new Gitment({
+    id: '2018-12-03 15:34:29 \x2b0800 CST',
+    title: '为了使用Jaeger，整合Feign和Hystrix的那些事',
+    link: decodeURI(location.href),
+    desc: '1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot \x2b Isti',
+    owner: 'domsn',
+    repo: 'comment',
+    oauth: {
+      client_id: '813494a151ab1a70cd56',
+      client_secret: '417f6884c96cd969c6d84383605ee5139e8923d2'
+    }
+  })
+  gitment.render('comments-gitment')
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://github.com/imsun/gitment">comments powered by gitment.</a></noscript>
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+  <a href="http://xifan.me/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://gohugo.io">Hugo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  <div class="busuanzi-footer">
+    <span id="busuanzi_container_site_pv"> 本站总访问量 <span id="busuanzi_value_site_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次 </span>
+    <span class="division">|</span>
+    <span id="busuanzi_container_site_uv"> 本站总访客数 <span id="busuanzi_value_site_uv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 人 </span>
+  </div>
+
+  <span class="copyright-year">
+    &copy; 
+    
+      2017 - 
+    2018
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">xifan</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+<script src="/lib/highlight/highlight.pack.js?v=20171001"></script><script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+  <script type="text/javascript" src="/lib/fancybox/jquery.fancybox-3.1.20.min.js"></script>
+
+
+<script type="text/javascript" src="/dist/even.min.js?v=3.2.0"></script>
+
+
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-125857878-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script id="baidu_analytics">
+  var _hmt = _hmt || [];
+  (function() {
+    if (window.location.hostname === 'localhost') return;
+    var hm = document.createElement("script"); hm.async = true;
+    hm.src = "https://hm.baidu.com/hm.js?d0cff1b22ecf768a19b5a8ba6294c87c";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+</body>
+</html>

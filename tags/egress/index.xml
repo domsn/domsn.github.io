@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Egress on xifan - a blog</title>
+    <link>http://xifan.me/tags/egress/</link>
+    <description>Recent content in Egress on xifan - a blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 01 Dec 2018 15:22:33 +0800</lastBuildDate>
+    
+	<atom:link href="http://xifan.me/tags/egress/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Istio - Egress实践</title>
+      <link>http://xifan.me/post/istio-egress/</link>
+      <pubDate>Sat, 01 Dec 2018 15:22:33 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/istio-egress/</guid>
+      <description>1. 故事背景 在Ingress里已经说到，Istio掌管了所有流量的进进出出。当时我还没在意，默认把“出”给过滤了，当我真正使用的时候，才发现，</description>
+    </item>
+    
+  </channel>
+</rss>

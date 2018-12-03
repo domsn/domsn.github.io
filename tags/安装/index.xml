@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>安装 on xifan - a blog</title>
+    <link>http://xifan.me/tags/%E5%AE%89%E8%A3%85/</link>
+    <description>Recent content in 安装 on xifan - a blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 01 Dec 2018 10:28:03 +0800</lastBuildDate>
+    
+	<atom:link href="http://xifan.me/tags/%E5%AE%89%E8%A3%85/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Istio - 安装及注意事项</title>
+      <link>http://xifan.me/post/istio-setup/</link>
+      <pubDate>Sat, 01 Dec 2018 10:28:03 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/istio-setup/</guid>
+      <description>1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在</description>
+    </item>
+    
+  </channel>
+</rss>
