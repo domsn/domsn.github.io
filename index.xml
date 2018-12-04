@@ -6,10 +6,37 @@
     <description>Recent content on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 03 Dec 2018 15:34:29 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Dec 2018 10:56:40 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Feign - 错误处理实践</title>
+      <link>http://xifan.me/post/feign-error-config/</link>
+      <pubDate>Tue, 04 Dec 2018 10:56:40 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/feign-error-config/</guid>
+      <description>1. 故事背景 Feign + Hystrix 是一对黄金组合，虽然我没有吃透。在我使用的过程中，遇到了一个问题。首先Feign在默认情况下，http状态码4XX和5XX都</description>
+    </item>
+    
+    <item>
+      <title>DevOps - Gitlab-Ci与多个K8S集群集成之路</title>
+      <link>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</link>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</guid>
+      <description>1. 故事背景 前面有写过Gitlab-CI与Kubernetes(k8s)集成之路，2个月后，不满足我需求了。我现在拥有两个集群，分别用于测试和</description>
+    </item>
+    
+    <item>
+      <title>Istio - 健康检查实践</title>
+      <link>http://xifan.me/post/istio-health-check/</link>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/istio-health-check/</guid>
+      <description>1. 故事背景 本来我从未关注过官方这篇文章Istio Service 健康检查，因为这不是属于K8S的自带的功能吗？而且你看那篇文章，通篇说的都是TLS相关的。</description>
+    </item>
     
     <item>
       <title>为了使用Jaeger，整合Feign和Hystrix的那些事</title>

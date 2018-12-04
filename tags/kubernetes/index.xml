@@ -6,10 +6,19 @@
     <description>Recent content in Kubernetes on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 06 Oct 2018 22:38:22 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 04 Dec 2018 10:29:31 +0800</lastBuildDate>
     
 	<atom:link href="http://xifan.me/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>DevOps - Gitlab-Ci与多个K8S集群集成之路</title>
+      <link>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</link>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
+      
+      <guid>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</guid>
+      <description>1. 故事背景 前面有写过Gitlab-CI与Kubernetes(k8s)集成之路，2个月后，不满足我需求了。我现在拥有两个集群，分别用于测试和</description>
+    </item>
     
     <item>
       <title>【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？</title>

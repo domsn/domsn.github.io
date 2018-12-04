@@ -23,7 +23,7 @@
     <item>
       <title>DevOps</title>
       <link>http://xifan.me/tags/devops/</link>
-      <pubDate>Sat, 06 Oct 2018 22:38:22 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
       <guid>http://xifan.me/tags/devops/</guid>
       <description></description>
@@ -48,9 +48,18 @@
     </item>
     
     <item>
+      <title>ErrorDecoder</title>
+      <link>http://xifan.me/tags/errordecoder/</link>
+      <pubDate>Tue, 04 Dec 2018 10:56:40 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/errordecoder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Feign</title>
       <link>http://xifan.me/tags/feign/</link>
-      <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:56:40 +0800</pubDate>
       
       <guid>http://xifan.me/tags/feign/</guid>
       <description></description>
@@ -77,7 +86,7 @@
     <item>
       <title>Gitlab</title>
       <link>http://xifan.me/tags/gitlab/</link>
-      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
       <guid>http://xifan.me/tags/gitlab/</guid>
       <description></description>
@@ -86,7 +95,7 @@
     <item>
       <title>Gitlab-CI</title>
       <link>http://xifan.me/tags/gitlab-ci/</link>
-      <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
       <guid>http://xifan.me/tags/gitlab-ci/</guid>
       <description></description>
@@ -149,7 +158,7 @@
     <item>
       <title>Istio</title>
       <link>http://xifan.me/tags/istio/</link>
-      <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/istio/</guid>
       <description></description>
@@ -158,7 +167,7 @@
     <item>
       <title>K8s</title>
       <link>http://xifan.me/tags/k8s/</link>
-      <pubDate>Sat, 06 Oct 2018 22:38:22 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
       <guid>http://xifan.me/tags/k8s/</guid>
       <description></description>
@@ -176,7 +185,7 @@
     <item>
       <title>Kuberenetes</title>
       <link>http://xifan.me/tags/kuberenetes/</link>
-      <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/kuberenetes/</guid>
       <description></description>
@@ -185,7 +194,7 @@
     <item>
       <title>Kubernetes</title>
       <link>http://xifan.me/tags/kubernetes/</link>
-      <pubDate>Sat, 06 Oct 2018 22:38:22 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
       <guid>http://xifan.me/tags/kubernetes/</guid>
       <description></description>
@@ -203,7 +212,7 @@
     <item>
       <title>Microservice</title>
       <link>http://xifan.me/tags/microservice/</link>
-      <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/microservice/</guid>
       <description></description>
@@ -291,6 +300,15 @@
     </item>
     
     <item>
+      <title>健康检查</title>
+      <link>http://xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</link>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
+      
+      <guid>http://xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>全链路跟踪</title>
       <link>http://xifan.me/tags/%E5%85%A8%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</link>
       <pubDate>Mon, 03 Dec 2018 11:33:23 +0800</pubDate>
@@ -320,7 +338,7 @@
     <item>
       <title>微服务</title>
       <link>http://xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
-      <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
+      <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
       <guid>http://xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</guid>
       <description></description>
