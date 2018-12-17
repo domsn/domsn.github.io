@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-09-14T02:30:46&#43;08:00" />
 <meta itemprop="dateModified" content="2018-09-14T02:30:46&#43;08:00" />
-<meta itemprop="wordCount" content="1025">
+<meta itemprop="wordCount" content="1427">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 1025 字 </span>
+        <span class="more-meta"> 约 1427 字 </span>
         <span class="more-meta"> 预计阅读 3 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -217,9 +217,19 @@
 
 <p>这步和安装Master基本一致，其中第四部<strong>kubelet配置cgroup driver</strong>不需要处理。</p>
 
+<p>我🖕原话说过&rdquo;<strong>kubelet配置cgroup driver</strong>&ldquo;，其实是错误的。在某一次测试集群挂掉，重启机器后发现有一个节点，一直是<code>NotReady</code>的状态，通过查询Kubelet日志<code>journalctl -xeu kubelet</code>，发现其中错误直指<code>Cgroup driver</code>，按照Master设置的方式重启Kubelet后，节点处于<code>Ready</code>状态了。</p>
+
 <blockquote>
-<p>注意：kubectl可以不用装，管理k8s基本上在Master机器上就可以了</p>
+<p>❗️注意❗️</p>
 </blockquote>
+
+<ul>
+<li><p>kubectl可以不用装，管理k8s基本上在Master机器上就可以了</p></li>
+
+<li><p>kubeadm、kubelet可以默认安装，但最好与master一致，否则会有版本不兼容的问题。查询对应版本<code>kubeadm version</code>和<code>kubelet --version</code>。安装对应版本如<code>yum install -y kubelet-1.11.2 kubeadm-1.11.2</code>。</p></li>
+
+<li><p>docker可以默认安装，但最好也与master一致，否则有可能无法成功加入master。查询对应版本<code>yum list docker-ce</code>。安装对应版本如<code>docker install -y docker-ce-18.06.1.ce-3.el7</code>。</p></li>
+</ul>
 
 <h1 id="4-准备k8s的镜像">4. 准备k8s的镜像</h1>
 
