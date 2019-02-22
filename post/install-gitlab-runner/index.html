@@ -76,7 +76,7 @@
 
 <meta itemprop="datePublished" content="2018-08-29T14:55:38&#43;08:00" />
 <meta itemprop="dateModified" content="2018-08-29T14:55:38&#43;08:00" />
-<meta itemprop="wordCount" content="724">
+<meta itemprop="wordCount" content="762">
 
 
 
@@ -155,7 +155,7 @@
               <a href="/categories/devops/"> DevOps </a>
             
           </div>
-        <span class="more-meta"> 约 724 字 </span>
+        <span class="more-meta"> 约 762 字 </span>
         <span class="more-meta"> 预计阅读 2 分钟 </span>
         <span id="busuanzi_container_page_pv" class="more-meta"> <span id="busuanzi_value_page_pv"><img src="/img/spinner.svg" alt="spinner.svg"/></span> 次阅读 </span>
       </div>
@@ -171,9 +171,10 @@
 <ul>
 <li><a href="#1-故事背景">1. 故事背景</a></li>
 <li><a href="#2-提前准备">2. 提前准备</a></li>
-<li><a href="#3-安装gitlab-runner">3. 安装Gitlab-Runner</a></li>
-<li><a href="#4-注册gitlab-runner">4. 注册Gitlab-Runner</a></li>
-<li><a href="#5-常见问题">5. 常见问题</a></li>
+<li><a href="#3-安装-gitlab-runner">3. 安装 Gitlab-Runner</a></li>
+<li><a href="#4-注册-gitlab-runner">4. 注册 Gitlab-Runner</a></li>
+<li><a href="#5-安装-gitlab-runner-service">5. 安装 Gitlab-Runner Service</a></li>
+<li><a href="#6-常见问题">6. 常见问题</a></li>
 </ul>
 </nav>
   </div>
@@ -198,7 +199,7 @@
 <li><code>Gitlab</code>环境</li>
 </ul>
 
-<h1 id="3-安装gitlab-runner">3. 安装Gitlab-Runner</h1>
+<h1 id="3-安装-gitlab-runner">3. 安装 Gitlab-Runner</h1>
 
 <blockquote>
 <p>官方不建议<code>Gitlab-Runner</code>和<code>Gitlab</code>在同一台机器上</p>
@@ -208,17 +209,17 @@
 
 <p><a href="https://docs.gitlab.com/runner/install/">官网</a>提供各种安装方式，我选择了<a href="https://docs.gitlab.com/runner/install/linux-repository.html">Repositories</a>方式，也是最简单的方式。</p>
 
-<p>添加Gitlab官方源</p>
+<p>添加 Gitlab 官方源</p>
 
 <pre><code>curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | sudo bash
 </code></pre>
 
-<p>安装最新版Gitlab-runner</p>
+<p>安装最新版 Gitlab-runner</p>
 
 <pre><code>sudo yum install -y gitlab-runner
 </code></pre>
 
-<h1 id="4-注册gitlab-runner">4. 注册Gitlab-Runner</h1>
+<h1 id="4-注册-gitlab-runner">4. 注册 Gitlab-Runner</h1>
 
 <p>根据你的安装方式，注册的方式也会有所不同，在<a href="https://docs.gitlab.com/runner/register/index.html">官网</a>都会有说明。</p>
 
@@ -233,7 +234,7 @@
 http://gitlab.your-domain.com/
 </code></pre>
 
-<p>输入<code>gitlab-ci</code>的<code>token</code>，在👇的常见问题里会告诉你怎么找</p>
+<p>输入<code>gitlab-ci</code>的<code>token</code>，在 👇 的常见问题里会告诉你怎么找</p>
 
 <pre><code># Please enter the gitlab-ci token for this runner:
 your-token
@@ -245,7 +246,7 @@ your-token
 [86fa96c778e3]: docker
 </code></pre>
 
-<p>输入<code>gitlab-ci</code>的标签，方便后面的runner的选择，多个用逗号分隔，后面也可以改</p>
+<p>输入<code>gitlab-ci</code>的标签，方便后面的 runner 的选择，多个用逗号分隔，后面也可以改</p>
 
 <pre><code># Please enter the gitlab-ci tags for this runner (comma separated):
 docker
@@ -257,13 +258,25 @@ docker
 docker
 </code></pre>
 
-<p>如果你选择了Docker作为executor，还会让你输入默认的镜像</p>
+<p>如果你选择了 Docker 作为 executor，还会让你输入默认的镜像</p>
 
 <pre><code># Please enter the default Docker image (e.g. ruby:2.1):
 alpine:latest
 </code></pre>
 
-<h1 id="5-常见问题">5. 常见问题</h1>
+<h1 id="5-安装-gitlab-runner-service">5. 安装 Gitlab-Runner Service</h1>
+
+<p>为了后面方便重启 Gitlab-Runner，最好安装 TA 的 Service。</p>
+
+<pre><code class="language-bash"># 指定用户gitlab-runner
+sudo gitlab-runner install --user=gitlab-runner
+
+# 日后在使用gitlab-runner的过程中
+# 发现ci卡住了，就尝试重启TA
+sudo gitlab-runner restart
+</code></pre>
+
+<h1 id="6-常见问题">6. 常见问题</h1>
 
 <blockquote>
 <p>怎么知道注册成功了？</p>
@@ -273,10 +286,10 @@ alpine:latest
 
 <p><strong>1.在命令行里注册完成后，会有类似相关的成功提示。</strong></p>
 
-<pre><code>Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded! 
+<pre><code>Runner registered successfully. Feel free to start it, but if it's running already the config should be automatically reloaded!
 </code></pre>
 
-<p><strong>2.在gitlab-ui的后台可以看到，要用管理员登录，如下图：</strong>
+<p><strong>2.在 gitlab-ui 的后台可以看到，要用管理员登录，如下图：</strong>
 <img src="/install-gitlab-runner/register-runner-list.jpg" alt="成功会展现在列表里" /></p>
 
 <hr />
@@ -285,7 +298,7 @@ alpine:latest
 <p>注册的时候，<code>Gitlab地址</code>和<code>token</code>哪里找？</p>
 </blockquote>
 
-<p>用管理员登录，在gitlab-ui的后台可以看到，如下图：
+<p>用管理员登录，在 gitlab-ui 的后台可以看到，如下图：
 <img src="/install-gitlab-runner/url-and-token.jpg" alt="在这里找" /></p>
 
     </div>
@@ -404,7 +417,7 @@ alpine:latest
     &copy; 
     
       2017 - 
-    2018
+    2019
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
