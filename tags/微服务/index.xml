@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>微服务 on xifan - a blog</title>
-    <link>http://xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
+    <link>http://www.xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</link>
     <description>Recent content in 微服务 on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 04 Dec 2018 09:43:37 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio - 健康检查实践</title>
-      <link>http://xifan.me/post/istio-health-check/</link>
+      <link>http://www.xifan.me/post/istio-health-check/</link>
       <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-health-check/</guid>
+      <guid>http://www.xifan.me/post/istio-health-check/</guid>
       <description>1. 故事背景 本来我从未关注过官方这篇文章Istio Service 健康检查，因为这不是属于K8S的自带的功能吗？而且你看那篇文章，通篇说的都是TLS相关的。</description>
     </item>
     
     <item>
       <title>为了使用Jaeger，整合Feign和Hystrix的那些事</title>
-      <link>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
+      <link>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
       <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
       
-      <guid>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
+      <guid>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
       <description>1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot + Isti</description>
     </item>
     
     <item>
       <title>Istio - 分布式跟踪实践</title>
-      <link>http://xifan.me/post/istio-tracing/</link>
+      <link>http://www.xifan.me/post/istio-tracing/</link>
       <pubDate>Mon, 03 Dec 2018 11:33:23 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-tracing/</guid>
+      <guid>http://www.xifan.me/post/istio-tracing/</guid>
       <description>1. 故事背景 在微服务里，少不了分布式跟踪（全链路跟踪）。当服务发现问题时，可以快速定位问题故障点在哪？当服务性能差的时候，可以知道性能差在哪个</description>
     </item>
     
     <item>
       <title>Istio - Egress实践</title>
-      <link>http://xifan.me/post/istio-egress/</link>
+      <link>http://www.xifan.me/post/istio-egress/</link>
       <pubDate>Sat, 01 Dec 2018 15:22:33 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-egress/</guid>
+      <guid>http://www.xifan.me/post/istio-egress/</guid>
       <description>1. 故事背景 在Ingress里已经说到，Istio掌管了所有流量的进进出出。当时我还没在意，默认把“出”给过滤了，当我真正使用的时候，才发现，</description>
     </item>
     
     <item>
       <title>Istio - Ingressgateway实践</title>
-      <link>http://xifan.me/post/istio-ingressgateway/</link>
+      <link>http://www.xifan.me/post/istio-ingressgateway/</link>
       <pubDate>Sat, 01 Dec 2018 11:31:06 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-ingressgateway/</guid>
+      <guid>http://www.xifan.me/post/istio-ingressgateway/</guid>
       <description>1. 故事背景 这个没背景，用了Istio，就代表了TA接管了整个网络，进进出出就得经过TA，这样你才可以得到好处。但是不是说啥也不干就可以随进随</description>
     </item>
     
     <item>
       <title>Istio - 安装及注意事项</title>
-      <link>http://xifan.me/post/istio-setup/</link>
+      <link>http://www.xifan.me/post/istio-setup/</link>
       <pubDate>Sat, 01 Dec 2018 10:28:03 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-setup/</guid>
+      <guid>http://www.xifan.me/post/istio-setup/</guid>
       <description>1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在</description>
     </item>
     

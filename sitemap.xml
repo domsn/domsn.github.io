@@ -1,456 +1,456 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<?xml-stylesheet type="text/xsl" href="http://xifan.me/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="http://www.xifan.me/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://xifan.me/post/feign-error-config/</loc>
+    <loc>http://www.xifan.me/post/feign-error-config/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</loc>
+    <loc>http://www.xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/istio-health-check/</loc>
+    <loc>http://www.xifan.me/post/istio-health-check/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</loc>
+    <loc>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</loc>
     <lastmod>2018-12-03T15:34:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/istio-tracing/</loc>
+    <loc>http://www.xifan.me/post/istio-tracing/</loc>
     <lastmod>2018-12-03T11:33:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/istio-egress/</loc>
+    <loc>http://www.xifan.me/post/istio-egress/</loc>
     <lastmod>2018-12-01T15:22:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/istio-ingressgateway/</loc>
+    <loc>http://www.xifan.me/post/istio-ingressgateway/</loc>
     <lastmod>2018-12-01T11:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/istio-setup/</loc>
+    <loc>http://www.xifan.me/post/istio-setup/</loc>
     <lastmod>2018-12-01T10:28:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</loc>
+    <loc>http://www.xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</loc>
     <lastmod>2018-10-06T22:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</loc>
+    <loc>http://www.xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</loc>
     <lastmod>2018-09-25T22:11:20+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/install-helm-and-alicloud-logtail/</loc>
+    <loc>http://www.xifan.me/post/install-helm-and-alicloud-logtail/</loc>
     <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</loc>
+    <loc>http://www.xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</loc>
+    <loc>http://www.xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</loc>
     <lastmod>2018-09-14T02:30:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</loc>
+    <loc>http://www.xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</loc>
     <lastmod>2018-09-13T20:34:55+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</loc>
+    <loc>http://www.xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</loc>
     <lastmod>2018-09-13T20:30:18+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</loc>
+    <loc>http://www.xifan.me/post/gitlab-ci-and-k8s-integration-road/</loc>
     <lastmod>2018-08-30T14:05:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/install-gitlab-runner/</loc>
+    <loc>http://www.xifan.me/post/install-gitlab-runner/</loc>
     <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/k8s-prepare-you-need-a-chair/</loc>
+    <loc>http://www.xifan.me/post/k8s-prepare-you-need-a-chair/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/throw-ssh-software-to-be-cool/</loc>
+    <loc>http://www.xifan.me/post/throw-ssh-software-to-be-cool/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/alicloud/</loc>
+    <loc>http://www.xifan.me/tags/alicloud/</loc>
     <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/categories/</loc>
+    <loc>http://www.xifan.me/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/devops/</loc>
+    <loc>http://www.xifan.me/tags/devops/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/categories/devops/</loc>
+    <loc>http://www.xifan.me/categories/devops/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/docker/</loc>
+    <loc>http://www.xifan.me/tags/docker/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/egress/</loc>
+    <loc>http://www.xifan.me/tags/egress/</loc>
     <lastmod>2018-12-01T15:22:33+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/errordecoder/</loc>
+    <loc>http://www.xifan.me/tags/errordecoder/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/feign/</loc>
+    <loc>http://www.xifan.me/tags/feign/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/free/</loc>
+    <loc>http://www.xifan.me/tags/free/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/gateway/</loc>
+    <loc>http://www.xifan.me/tags/gateway/</loc>
     <lastmod>2018-12-01T11:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/gitlab/</loc>
+    <loc>http://www.xifan.me/tags/gitlab/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/gitlab-ci/</loc>
+    <loc>http://www.xifan.me/tags/gitlab-ci/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/gitlab-runner/</loc>
+    <loc>http://www.xifan.me/tags/gitlab-runner/</loc>
     <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/gitlab-runner/</loc>
+    <loc>http://www.xifan.me/tags/gitlab-runner/</loc>
     <lastmod>2018-08-29T14:55:38+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/helm/</loc>
+    <loc>http://www.xifan.me/tags/helm/</loc>
     <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/hystrix/</loc>
+    <loc>http://www.xifan.me/tags/hystrix/</loc>
     <lastmod>2018-12-03T15:34:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/in/</loc>
+    <loc>http://www.xifan.me/tags/in/</loc>
     <lastmod>2018-12-01T11:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/ingress/</loc>
+    <loc>http://www.xifan.me/tags/ingress/</loc>
     <lastmod>2018-12-01T11:31:06+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/istio/</loc>
+    <loc>http://www.xifan.me/tags/istio/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/k8s/</loc>
+    <loc>http://www.xifan.me/tags/k8s/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/kubeadm/</loc>
+    <loc>http://www.xifan.me/tags/kubeadm/</loc>
     <lastmod>2018-09-14T02:30:46+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/kuberenetes/</loc>
+    <loc>http://www.xifan.me/tags/kuberenetes/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/kubernetes/</loc>
+    <loc>http://www.xifan.me/tags/kubernetes/</loc>
     <lastmod>2018-12-04T10:29:31+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/categories/level-up/</loc>
+    <loc>http://www.xifan.me/categories/level-up/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/logtail/</loc>
+    <loc>http://www.xifan.me/tags/logtail/</loc>
     <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/microservice/</loc>
+    <loc>http://www.xifan.me/tags/microservice/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/nodejs/</loc>
+    <loc>http://www.xifan.me/tags/nodejs/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/categories/note/</loc>
+    <loc>http://www.xifan.me/categories/note/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/php/</loc>
+    <loc>http://www.xifan.me/tags/php/</loc>
     <lastmod>2018-09-16T17:40:49+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/post/</loc>
+    <loc>http://www.xifan.me/post/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/privoxy/</loc>
+    <loc>http://www.xifan.me/tags/privoxy/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/shadowsocks/</loc>
+    <loc>http://www.xifan.me/tags/shadowsocks/</loc>
     <lastmod>2018-08-23T15:46:07+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/spring-cloud/</loc>
+    <loc>http://www.xifan.me/tags/spring-cloud/</loc>
     <lastmod>2018-10-06T22:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/ssh/</loc>
+    <loc>http://www.xifan.me/tags/ssh/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/ssh-copy-id/</loc>
+    <loc>http://www.xifan.me/tags/ssh-copy-id/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/ssh-keygen/</loc>
+    <loc>http://www.xifan.me/tags/ssh-keygen/</loc>
     <lastmod>2015-06-05T17:26:31+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/</loc>
+    <loc>http://www.xifan.me/tags/</loc>
     <lastmod>2018-09-16T21:00:12+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/tracing/</loc>
+    <loc>http://www.xifan.me/tags/tracing/</loc>
     <lastmod>2018-12-03T15:34:29+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/</loc>
+    <loc>http://www.xifan.me/</loc>
     <lastmod>2018-12-04T10:56:40+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</loc>
+    <loc>http://www.xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E5%85%A8%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</loc>
+    <loc>http://www.xifan.me/tags/%E5%85%A8%E9%93%BE%E8%B7%AF%E8%B7%9F%E8%B8%AA/</loc>
     <lastmod>2018-12-03T11:33:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%9F%E8%B8%AA/</loc>
+    <loc>http://www.xifan.me/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B7%9F%E8%B8%AA/</loc>
     <lastmod>2018-12-03T11:33:23+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E5%AE%89%E8%A3%85/</loc>
+    <loc>http://www.xifan.me/tags/%E5%AE%89%E8%A3%85/</loc>
     <lastmod>2018-12-01T10:28:03+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
+    <loc>http://www.xifan.me/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2018-12-04T09:43:37+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E6%9C%AC%E5%9C%B0%E8%B0%83%E8%AF%95/</loc>
+    <loc>http://www.xifan.me/tags/%E6%9C%AC%E5%9C%B0%E8%B0%83%E8%AF%95/</loc>
     <lastmod>2018-10-06T22:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://xifan.me/tags/%E7%AC%94%E8%AE%B0/</loc>
+    <loc>http://www.xifan.me/tags/%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2018-10-06T22:38:22+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0</priority>

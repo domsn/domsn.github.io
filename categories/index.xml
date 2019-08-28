@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on xifan - a blog</title>
-    <link>http://xifan.me/categories/</link>
+    <link>http://www.xifan.me/categories/</link>
     <description>Recent content in Categories on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     
-	<atom:link href="http://xifan.me/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>DevOps</title>
-      <link>http://xifan.me/categories/devops/</link>
+      <link>http://www.xifan.me/categories/devops/</link>
       <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
-      <guid>http://xifan.me/categories/devops/</guid>
+      <guid>http://www.xifan.me/categories/devops/</guid>
       <description></description>
     </item>
     
     <item>
       <title>LEVEL UP</title>
-      <link>http://xifan.me/categories/level-up/</link>
+      <link>http://www.xifan.me/categories/level-up/</link>
       <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
       
-      <guid>http://xifan.me/categories/level-up/</guid>
+      <guid>http://www.xifan.me/categories/level-up/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Note</title>
-      <link>http://xifan.me/categories/note/</link>
+      <link>http://www.xifan.me/categories/note/</link>
       <pubDate>Tue, 04 Dec 2018 10:56:40 +0800</pubDate>
       
-      <guid>http://xifan.me/categories/note/</guid>
+      <guid>http://www.xifan.me/categories/note/</guid>
       <description></description>
     </item>
     

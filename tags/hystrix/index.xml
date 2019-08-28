@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hystrix on xifan - a blog</title>
-    <link>http://xifan.me/tags/hystrix/</link>
+    <link>http://www.xifan.me/tags/hystrix/</link>
     <description>Recent content in Hystrix on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 03 Dec 2018 15:34:29 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/hystrix/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/hystrix/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>为了使用Jaeger，整合Feign和Hystrix的那些事</title>
-      <link>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
+      <link>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
       <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
       
-      <guid>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
+      <guid>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
       <description>1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot + Isti</description>
     </item>
     

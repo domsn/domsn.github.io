@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>In on xifan - a blog</title>
-    <link>http://xifan.me/tags/in/</link>
+    <link>http://www.xifan.me/tags/in/</link>
     <description>Recent content in In on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 01 Dec 2018 11:31:06 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/in/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/in/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio - Ingressgateway实践</title>
-      <link>http://xifan.me/post/istio-ingressgateway/</link>
+      <link>http://www.xifan.me/post/istio-ingressgateway/</link>
       <pubDate>Sat, 01 Dec 2018 11:31:06 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-ingressgateway/</guid>
+      <guid>http://www.xifan.me/post/istio-ingressgateway/</guid>
       <description>1. 故事背景 这个没背景，用了Istio，就代表了TA接管了整个网络，进进出出就得经过TA，这样你才可以得到好处。但是不是说啥也不干就可以随进随</description>
     </item>
     

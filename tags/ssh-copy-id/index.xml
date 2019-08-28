@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ssh-copy-id on xifan - a blog</title>
-    <link>http://xifan.me/tags/ssh-copy-id/</link>
+    <link>http://www.xifan.me/tags/ssh-copy-id/</link>
     <description>Recent content in Ssh-copy-id on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 05 Jun 2015 17:26:31 +0000</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/ssh-copy-id/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/ssh-copy-id/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>扔掉你的SSH工具吧</title>
-      <link>http://xifan.me/post/throw-ssh-software-to-be-cool/</link>
+      <link>http://www.xifan.me/post/throw-ssh-software-to-be-cool/</link>
       <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
       
-      <guid>http://xifan.me/post/throw-ssh-software-to-be-cool/</guid>
+      <guid>http://www.xifan.me/post/throw-ssh-software-to-be-cool/</guid>
       <description>故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份</description>
     </item>
     

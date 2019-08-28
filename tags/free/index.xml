@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Free on xifan - a blog</title>
-    <link>http://xifan.me/tags/free/</link>
+    <link>http://www.xifan.me/tags/free/</link>
     <description>Recent content in Free on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 23 Aug 2018 15:46:07 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/free/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/free/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅（科学上网）</title>
-      <link>http://xifan.me/post/k8s-prepare-you-need-a-chair/</link>
+      <link>http://www.xifan.me/post/k8s-prepare-you-need-a-chair/</link>
       <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
       
-      <guid>http://xifan.me/post/k8s-prepare-you-need-a-chair/</guid>
+      <guid>http://www.xifan.me/post/k8s-prepare-you-need-a-chair/</guid>
       <description>1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s</description>
     </item>
     

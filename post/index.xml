@@ -2,183 +2,183 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on xifan - a blog</title>
-    <link>http://xifan.me/post/</link>
+    <link>http://www.xifan.me/post/</link>
     <description>Recent content in Posts on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 04 Dec 2018 10:56:40 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Feign - 错误处理实践</title>
-      <link>http://xifan.me/post/feign-error-config/</link>
+      <link>http://www.xifan.me/post/feign-error-config/</link>
       <pubDate>Tue, 04 Dec 2018 10:56:40 +0800</pubDate>
       
-      <guid>http://xifan.me/post/feign-error-config/</guid>
+      <guid>http://www.xifan.me/post/feign-error-config/</guid>
       <description>1. 故事背景 Feign + Hystrix 是一对黄金组合，虽然我没有吃透。在我使用的过程中，遇到了一个问题。首先Feign在默认情况下，http状态码4XX和5XX都</description>
     </item>
     
     <item>
       <title>DevOps - Gitlab-Ci与多个K8S集群集成之路</title>
-      <link>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</link>
+      <link>http://www.xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</link>
       <pubDate>Tue, 04 Dec 2018 10:29:31 +0800</pubDate>
       
-      <guid>http://xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</guid>
+      <guid>http://www.xifan.me/post/gitlab-ci-and-multi-k8s-integration-road/</guid>
       <description>1. 故事背景 前面有写过Gitlab-CI与Kubernetes(k8s)集成之路，2个月后，不满足我需求了。我现在拥有两个集群，分别用于测试和</description>
     </item>
     
     <item>
       <title>Istio - 健康检查实践</title>
-      <link>http://xifan.me/post/istio-health-check/</link>
+      <link>http://www.xifan.me/post/istio-health-check/</link>
       <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-health-check/</guid>
+      <guid>http://www.xifan.me/post/istio-health-check/</guid>
       <description>1. 故事背景 本来我从未关注过官方这篇文章Istio Service 健康检查，因为这不是属于K8S的自带的功能吗？而且你看那篇文章，通篇说的都是TLS相关的。</description>
     </item>
     
     <item>
       <title>为了使用Jaeger，整合Feign和Hystrix的那些事</title>
-      <link>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
+      <link>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</link>
       <pubDate>Mon, 03 Dec 2018 15:34:29 +0800</pubDate>
       
-      <guid>http://xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
+      <guid>http://www.xifan.me/post/jaeger-tracing-with-feign-and-hystrix/</guid>
       <description>1. 故事背景 前面有说到过，我们正在进行微服务改造，其中曾经选型Spring Cloud，种种原因放弃了，最后选择了SpringBoot + Isti</description>
     </item>
     
     <item>
       <title>Istio - 分布式跟踪实践</title>
-      <link>http://xifan.me/post/istio-tracing/</link>
+      <link>http://www.xifan.me/post/istio-tracing/</link>
       <pubDate>Mon, 03 Dec 2018 11:33:23 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-tracing/</guid>
+      <guid>http://www.xifan.me/post/istio-tracing/</guid>
       <description>1. 故事背景 在微服务里，少不了分布式跟踪（全链路跟踪）。当服务发现问题时，可以快速定位问题故障点在哪？当服务性能差的时候，可以知道性能差在哪个</description>
     </item>
     
     <item>
       <title>Istio - Egress实践</title>
-      <link>http://xifan.me/post/istio-egress/</link>
+      <link>http://www.xifan.me/post/istio-egress/</link>
       <pubDate>Sat, 01 Dec 2018 15:22:33 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-egress/</guid>
+      <guid>http://www.xifan.me/post/istio-egress/</guid>
       <description>1. 故事背景 在Ingress里已经说到，Istio掌管了所有流量的进进出出。当时我还没在意，默认把“出”给过滤了，当我真正使用的时候，才发现，</description>
     </item>
     
     <item>
       <title>Istio - Ingressgateway实践</title>
-      <link>http://xifan.me/post/istio-ingressgateway/</link>
+      <link>http://www.xifan.me/post/istio-ingressgateway/</link>
       <pubDate>Sat, 01 Dec 2018 11:31:06 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-ingressgateway/</guid>
+      <guid>http://www.xifan.me/post/istio-ingressgateway/</guid>
       <description>1. 故事背景 这个没背景，用了Istio，就代表了TA接管了整个网络，进进出出就得经过TA，这样你才可以得到好处。但是不是说啥也不干就可以随进随</description>
     </item>
     
     <item>
       <title>Istio - 安装及注意事项</title>
-      <link>http://xifan.me/post/istio-setup/</link>
+      <link>http://www.xifan.me/post/istio-setup/</link>
       <pubDate>Sat, 01 Dec 2018 10:28:03 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-setup/</guid>
+      <guid>http://www.xifan.me/post/istio-setup/</guid>
       <description>1. 故事背景 前面说到，最近在拆分项目，把单体项目，往微服务架构方向迁移。因为我们的语言是JAVA，所以第一选择是Spring Cloud。可是在</description>
     </item>
     
     <item>
       <title>【笔记】对于部署在Kubernetes里的Spring Cloud，如何进行本地调试？</title>
-      <link>http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</link>
+      <link>http://www.xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</link>
       <pubDate>Sat, 06 Oct 2018 22:38:22 +0800</pubDate>
       
-      <guid>http://xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</guid>
+      <guid>http://www.xifan.me/post/how-to-local-debugging-with-spring-cloud-on-kubernetes/</guid>
       <description>1. 故事背景 随着业务的发展，单体臃肿的项目严重阻碍进度，朝着微服务的方向进行重构，因为后台的技术栈是Java，所以微服务框架的第一选择是Spr</description>
     </item>
     
     <item>
       <title>【笔记】k8s之Taint（瑕疵）、Toleration（容忍）、NodeSelector使用小结</title>
-      <link>http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</link>
+      <link>http://www.xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</link>
       <pubDate>Tue, 25 Sep 2018 22:11:20 +0800</pubDate>
       
-      <guid>http://xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</guid>
+      <guid>http://www.xifan.me/post/notes-of-k8s-taint-and-tolerations-and-node-selector/</guid>
       <description>1. 故事背景 目前我只有一个k8s集群，测试和生产环境都在这个集群里。测试环境是未经测试的版本，有可能会因为BUG而拉垮机器。为了避免这个风险，</description>
     </item>
     
     <item>
       <title>【笔记】安装Helm和Alicloud Logtail</title>
-      <link>http://xifan.me/post/install-helm-and-alicloud-logtail/</link>
+      <link>http://www.xifan.me/post/install-helm-and-alicloud-logtail/</link>
       <pubDate>Sun, 16 Sep 2018 21:00:12 +0800</pubDate>
       
-      <guid>http://xifan.me/post/install-helm-and-alicloud-logtail/</guid>
+      <guid>http://www.xifan.me/post/install-helm-and-alicloud-logtail/</guid>
       <description>1. 故事背景 原本我是在自建k8s集群里，集成阿里云的日志服务，发现需要使用Helm来安装，这个过程也遇到一些坑，所以一起在这里记录下来。 2. 提前</description>
     </item>
     
     <item>
       <title>【笔记】Gitlab-runner之部署应用软件依赖安装指南</title>
-      <link>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</link>
+      <link>http://www.xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</link>
       <pubDate>Sun, 16 Sep 2018 17:40:49 +0800</pubDate>
       
-      <guid>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</guid>
+      <guid>http://www.xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</guid>
       <description>1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我</description>
     </item>
     
     <item>
       <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Node</title>
-      <link>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</link>
+      <link>http://www.xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</link>
       <pubDate>Fri, 14 Sep 2018 02:30:46 +0800</pubDate>
       
-      <guid>http://xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</guid>
+      <guid>http://www.xifan.me/post/install-kubernetes-node-by-kubeadm-in-centos7/</guid>
       <description>Node安装与Master安装会相对简单，会单独说明 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 不想玩单机Master了 囊中羞</description>
     </item>
     
     <item>
       <title>在Kubernetes(k8s)里如何拉取私有Docker镜像？</title>
-      <link>http://xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</link>
+      <link>http://www.xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</link>
       <pubDate>Thu, 13 Sep 2018 20:34:55 +0800</pubDate>
       
-      <guid>http://xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</guid>
+      <guid>http://www.xifan.me/post/how-to-pull-private-docker-images-in-kubernetes/</guid>
       <description>在Kubernetes(k8s)里如何拉取私有Docker镜像？ 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 No.1 在Kuberne</description>
     </item>
     
     <item>
       <title>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master</title>
-      <link>http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</link>
+      <link>http://www.xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</link>
       <pubDate>Thu, 13 Sep 2018 20:30:18 +0800</pubDate>
       
-      <guid>http://xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</guid>
+      <guid>http://www.xifan.me/post/install-kubernetes-master-by-kubeadm-in-centos7/</guid>
       <description>在CentOS7中通过kubeadm安装Kubernetes(k8s) Master 1. 故事背景 如果你存下以下情况或者需求，满足一个就可以往下读 没钱用阿里</description>
     </item>
     
     <item>
       <title>DevOps - Gitlab-CI与Kubernetes(k8s)集成之路</title>
-      <link>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</link>
+      <link>http://www.xifan.me/post/gitlab-ci-and-k8s-integration-road/</link>
       <pubDate>Thu, 30 Aug 2018 14:05:37 +0800</pubDate>
       
-      <guid>http://xifan.me/post/gitlab-ci-and-k8s-integration-road/</guid>
+      <guid>http://www.xifan.me/post/gitlab-ci-and-k8s-integration-road/</guid>
       <description>1. 故事背景 如果你在使用gitlab-ci，也在使用k8s，但不知道怎么集成（就是通过gitlab-ci调用k8s），那你可以看看。 没过CET</description>
     </item>
     
     <item>
       <title>Gitlab-CI - 安装Gitlab-Runner</title>
-      <link>http://xifan.me/post/install-gitlab-runner/</link>
+      <link>http://www.xifan.me/post/install-gitlab-runner/</link>
       <pubDate>Wed, 29 Aug 2018 14:55:38 +0800</pubDate>
       
-      <guid>http://xifan.me/post/install-gitlab-runner/</guid>
+      <guid>http://www.xifan.me/post/install-gitlab-runner/</guid>
       <description>1. 故事背景 如果你用了Gitlab作为代码仓库，你又需要CI/CD工具，何须四处寻觅，Gitlab就自带了此工具。 虽然Jenkins很强大，但</description>
     </item>
     
     <item>
       <title>Kubernetes(k8s)之前期准备 - 你需要一把折椅（科学上网）</title>
-      <link>http://xifan.me/post/k8s-prepare-you-need-a-chair/</link>
+      <link>http://www.xifan.me/post/k8s-prepare-you-need-a-chair/</link>
       <pubDate>Thu, 23 Aug 2018 15:46:07 +0800</pubDate>
       
-      <guid>http://xifan.me/post/k8s-prepare-you-need-a-chair/</guid>
+      <guid>http://www.xifan.me/post/k8s-prepare-you-need-a-chair/</guid>
       <description>1. 故事背景 如果你并非身处大陆，可以Pass 最近听说Google要回来了，让我高兴地小酌了一打麒麟啤酒 清醒后，我总不能等到TA回来了再学K8s</description>
     </item>
     
     <item>
       <title>扔掉你的SSH工具吧</title>
-      <link>http://xifan.me/post/throw-ssh-software-to-be-cool/</link>
+      <link>http://www.xifan.me/post/throw-ssh-software-to-be-cool/</link>
       <pubDate>Fri, 05 Jun 2015 17:26:31 +0000</pubDate>
       
-      <guid>http://xifan.me/post/throw-ssh-software-to-be-cool/</guid>
+      <guid>http://www.xifan.me/post/throw-ssh-software-to-be-cool/</guid>
       <description>故事背景 如果你存在下面的情况，我想你可以继续看下去！ 你还在使用各种各样的SSH工具，来连接服务器？ 系统重装/迁移环境/工具更换，需要各种备份</description>
     </item>
     

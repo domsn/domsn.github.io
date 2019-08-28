@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: http://xifan.me/sitemap.xml
+Sitemap: http://www.xifan.me/sitemap.xml

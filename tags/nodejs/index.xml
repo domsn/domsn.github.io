@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Nodejs on xifan - a blog</title>
-    <link>http://xifan.me/tags/nodejs/</link>
+    <link>http://www.xifan.me/tags/nodejs/</link>
     <description>Recent content in Nodejs on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 16 Sep 2018 17:40:49 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/nodejs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>【笔记】Gitlab-runner之部署应用软件依赖安装指南</title>
-      <link>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</link>
+      <link>http://www.xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</link>
       <pubDate>Sun, 16 Sep 2018 17:40:49 +0800</pubDate>
       
-      <guid>http://xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</guid>
+      <guid>http://www.xifan.me/post/gitlab-runner-deployment-app-dependency-installation-guide/</guid>
       <description>1. 故事背景 为了管理方便，只在一台机器上安装Gitlab-runner，同时注册多个Executor。目前我用的是shell和docker。 我</description>
     </item>
     

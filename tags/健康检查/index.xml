@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>健康检查 on xifan - a blog</title>
-    <link>http://xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</link>
+    <link>http://www.xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/</link>
     <description>Recent content in 健康检查 on xifan - a blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 04 Dec 2018 09:43:37 +0800</lastBuildDate>
     
-	<atom:link href="http://xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.xifan.me/tags/%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Istio - 健康检查实践</title>
-      <link>http://xifan.me/post/istio-health-check/</link>
+      <link>http://www.xifan.me/post/istio-health-check/</link>
       <pubDate>Tue, 04 Dec 2018 09:43:37 +0800</pubDate>
       
-      <guid>http://xifan.me/post/istio-health-check/</guid>
+      <guid>http://www.xifan.me/post/istio-health-check/</guid>
       <description>1. 故事背景 本来我从未关注过官方这篇文章Istio Service 健康检查，因为这不是属于K8S的自带的功能吗？而且你看那篇文章，通篇说的都是TLS相关的。</description>
     </item>
     
